@@ -89,3 +89,11 @@ exports.updateProductByFilter = (req, res) => {
             });
         });
 };
+
+
+exports.getContactUsPage = (req, res) => {
+    res.render("contact", {
+        isAuth: req.session.userid,
+        isAdmin: req.session.isAdmin,
+    })
+}

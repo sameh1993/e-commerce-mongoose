@@ -17,15 +17,15 @@ app.set("view engine", 'ejs')
 var store = new MongoDBStore({
     uri: process.env.connectDB,
     collection: 'sessions'
-  });
+});
 
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
+    saveUninitialized: true,
     store: store,
     cookie: { maxAge: oneDay },
-    resave: false 
+    resave: false
 }));
 
 app.use(flash())
@@ -50,4 +50,3 @@ app.use("/api/braintree", BraintreeApiRoutes)
 const port = process.env.PORT
 
 app.listen(port, () => console.log(`server working on port ${port}`))
-

@@ -10,6 +10,8 @@ router.get("/price/:id", bodyParser.urlencoded({ extended: true }), homeControll
 
 router.post('/api/filter-product', bodyParser.json(), homeController.updateProductByFilter)
 
+router.get("/contactUs", homeController.getContactUsPage)
+
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
