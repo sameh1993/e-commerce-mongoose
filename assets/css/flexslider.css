@@ -59,6 +59,8 @@
 .flexslider .slides>li {
     display: none;
     -webkit-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .flexslider .slides img {
@@ -114,6 +116,8 @@ html[xmlns] .flexslider .slides {
 .flexslider .slides img {
     height: auto;
     -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .flex-viewport {

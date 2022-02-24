@@ -113,7 +113,4 @@ $("document").ready(function () {
     })
 
   }
-
-
-  console.log(paypals.minicarts.cart.items())
 });

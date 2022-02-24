@@ -24,6 +24,7 @@ exports.getAddPeoductPage = (req, res) => {
 
 exports.postAddNewProduct = (req, res) => {
     productsModel.insertNewProduct(req.body, req.files).then(result => {
+        console.log(result)
         res.redirect("/product/" + result._id)
     }).catch(err => {
         console.log(err)
@@ -45,6 +46,7 @@ exports.getEditProductPage = (req, res) => {
     })
 }
 
+
 exports.postEditProductPage = (req, res) => {
     const id = req.params.id
     productsModel.updateProductById(req.body, req.files, id).then(result => {
@@ -59,9 +61,10 @@ exports.postEditProductPage = (req, res) => {
 }
 
 exports.getProductsByCategory = (req, res) => {
-    console.log(req.query)
+    // return console.log(req.query.category)
     productsModel.fetchProductsByCategory(req.query).then(result => {
         productsModel.distinctBrandByCategory(req.query.category).then(brands => {
+            // console.log(brands, "brands")
             if (["mobiles", "computers"].indexOf(req.query.category) > -1) {
                 res.render("product", {
                     isAuth: req.session.userid,
@@ -83,6 +86,14 @@ exports.getProductsByCategory = (req, res) => {
             }
 
         })
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
+exports.fetchDataByCateries = (req, res) => {
+    productsModel.distinctBrandByCategoryWithFetchSomePreperty(req.query.category).then(result => {
+        console.log(result)
     }).catch(err => {
         console.log(err)
     })
@@ -122,11 +133,13 @@ exports.getProductsByPrice = (req, res) => {
 
 
 exports.getDeleteproduct = (req, res) => {
-    // return console.log(req.params)
     productsModel.deleteProductById(req.params.id).then(result => {
         res.redirect("/")
+        console.log("sameh sayed")
+        console.log(result)
     }).catch(err => {
-        res.redirect(`/product/${id}`)
+        console.log(err)
+        console.log("sameh")
     })
 }
 

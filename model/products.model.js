@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose")
 require("dotenv").config()
 
@@ -9,12 +8,12 @@ const productSchema = mongoose.Schema({
         required: true
     },
     description: [],
-    price : {
+    price: {
         type: Number,
         trim: true,
         required: true
     },
-    images : {
+    images: {
         type: Array,
         required: true
     },
@@ -56,8 +55,8 @@ const URL_DB = process.env.connectDB
 
 exports.getProductById = (id) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.connectDB).then(() => {
-            return product.findById( {_id: id})
+        mongoose.connect(URL_DB).then(() => {
+            return product.findById({ _id: id })
         }).then(result => {
             resolve(result)
         }).catch(err => {
@@ -68,7 +67,7 @@ exports.getProductById = (id) => {
 
 exports.getProductsByFilter = (filter) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(URL_DB).then(() =>{
+        mongoose.connect(URL_DB).then(() => {
             return product.find(filter).sort({ _id: -1 }).limit(3)
         }).then(result => {
             resolve(result)
@@ -79,10 +78,10 @@ exports.getProductsByFilter = (filter) => {
 }
 
 // get types product of [ mobiles , computers ]
-exports.fetchProductsByCategory = (data) =>{
+exports.fetchProductsByCategory = (data) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.connectDB).then(() => {
-            return product.find( data )
+        mongoose.connect(URL_DB).then(() => {
+            return product.find(data)
         }).then(products => {
             resolve(products)
         }).catch(err => {
@@ -92,22 +91,44 @@ exports.fetchProductsByCategory = (data) =>{
 }
 
 // to make group for specfific
-exports.distinctBrandByCategory = ( category ) => {
+exports.distinctBrandByCategory = async (category) => {
+    try {
+        const result = await product.find({ category: category }).distinct("brand")
+        return result
+    } catch (err) {
+        reject(err)
+    }
+}
+
+
+exports.getAllCategories = async () =>{
+    try {
+        const allCategories = await product.find({}, {category: "mobiles"}).distinct("category")
+        return allCategories
+    } catch ( err)  {
+        console.log(err)
+    }
+}
+
+// to make group for specific some preperties
+exports.distinctBrandByCategoryWithFetchSomePreperty = (category) => {
     return new Promise((resolve, reject) => {
         mongoose.connect(URL_DB).then(() => {
-            return product.find( { category: category }).distinct("brand")
+            return product.find({ }, { productName: 1, price: 1 }).distinct("brand")
         }).then(result => {
-            resolve(result)
+            console.log(result)
         }).catch(err => {
-            reject(err)
+            console.log(err)
         })
     })
 }
 
+
+
 exports.insertNewProduct = (data, imageObj) => {
     return new Promise((resolve, reject) => {
         const images = []
-        for(let img of imageObj) {
+        for (let img of imageObj) {
             images.push(img.filename)
         }
         const newProduct = new product({
@@ -115,7 +136,7 @@ exports.insertNewProduct = (data, imageObj) => {
             category: data.category,
             description: data.description,
             price: +data.price,
-            amount : +data.amount,
+            amount: +data.amount,
             discount: +data.discount,
             brand: data.brand,
             images: images,
@@ -123,10 +144,13 @@ exports.insertNewProduct = (data, imageObj) => {
             about: data.about,
             type: data.type
         })
-        mongoose.connect(process.env.connectDB).then(() => {
+        mongoose.connect(URL_DB).then(() => {
+            // return console.log(newProduct)
             return newProduct.save()
         }).then(result => {
+            // return console.log(result.code)
             resolve(result)
+
         }).catch(err => {
             reject(err)
         })
@@ -136,16 +160,13 @@ exports.insertNewProduct = (data, imageObj) => {
 
 exports.deleteProductById = (id) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.connectDB, () => {
-            return product.deleteOne({ _id: id })
-        }).then(result => {
-            resolve(result)
-        }).catch(err => {
-            reject(err)
+        // return console.log(URL_DB)
+        mongoose.connect(URL_DB, () => {
+            return product.deleteOne({ _id: id }).then(result => {
+                resolve(result)
+            }).catch(err => {
+                reject(err)
+            })
         })
-    }).catch(err => {
-        reject(err)
     })
 }
-
-

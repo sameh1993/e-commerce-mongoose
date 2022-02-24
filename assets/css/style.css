@@ -84,16 +84,6 @@ a:hover {
 }
 
 
-/* .logged,
-.unlogged {
-    display: none !important;
-}
-
-.logged.active,
-.unlogged.active {
-    display: inline-block !important
-} */
-
 input[type="button"],
 input[type="submit"] {
     transition: 0.5s all;
@@ -639,13 +629,10 @@ h3.tittle-w3l span {
     margin: 0 auto;
 }
 
-.btn-danger.my-cart-btn:focus {
-    outline: none;
-}
 
-.snipcart-details .d-flex {
-    width: 300px;
-}
+/* .snipcart-details .d-flex {
+    justify-content: center;
+} */
 
 .snipcart-details .d-flex button {
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.45);
@@ -710,7 +697,9 @@ h3.tittle-w3l span {
 }
 
 #PPminicarts ul {
-    width: 548px !important;
+    right: 25px;
+    left: 20px;
+    width: auto !important;
 }
 
 #PPminicarts .minicarts-item a {
@@ -764,7 +753,7 @@ h3.tittle-w3l span {
     left: 44% !important;
 }
 
-.minicarts-showing #PPminicarts form {
+.minicart-showing #PPminicarts form {
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -1803,7 +1792,7 @@ li.subitem1 p {
 }
 
 .product-single-w3l ul li {
-    list-style: inside;
+    list-style: disc;
     font-size: 14px;
     line-height: 1.7;
 }
@@ -1859,7 +1848,7 @@ table.timetable_sub {
 }
 
 td.invert-image a img {
-    width: 30%;
+    width: 120px;
     margin: 0 auto;
 }
 
@@ -2275,8 +2264,29 @@ select.form-control.option-w3ls {
     border-radius: 0;
 }
 
+.parent{
+    position:relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.parent .content {
+    width: 45%;
+}
+
+.parent .total-value {
+    text-transform:capitalize;
+    font-weight: 600;
+}
 
 /*-- //Payment page --*/
+
+
+
 
 
 /*-- about page --*/
@@ -2532,6 +2542,8 @@ div#testimonials h4.m-title {
     width: 60px;
     background-color: #eeeeee26;
     border-radius: 50%;
+    width: 35px;
+    height: 35px;    
 }
 
 
@@ -2944,6 +2956,10 @@ div#testimonials h4.m-title {
         }
     }
     @media(max-width: 736px) {
+        .minicart-showing #PPminicarts form {
+            right: 25px;
+            left: 25px;
+        }
         .logo_agile {
             padding: 10px 0 0;
         }

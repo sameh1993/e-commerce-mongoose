@@ -28,14 +28,15 @@ exports.getHomepage = (req, res) => {
             }
         }
     }
+
+
     productModel.getProductsByFilter(filterMobiles).then((mobiles) => {
             productModel.getProductsByFilter(filterTvScreen).then((tvScreen) => {
                 productModel.getProductsByFilter(filterHousehold).then((houseHold) => {
                     getSlider().then((slider) => {
+                        console.log(req.session.userid, 'isAuth')
                         res.render("index", {
-                            isAuth: req.session.userid,
-                            isAdmin: req.session.isAdmin,
-
+                            isAuth: req.session.userid ,
                             mobiles: mobiles,
                             houseapplince: houseHold,
                             tvScreen: tvScreen,
