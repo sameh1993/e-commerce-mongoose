@@ -12,22 +12,32 @@ var gateway = new braintree.BraintreeGateway({
 
 exports.getPaymentPage = (req, res) => {
     // return console.log(req.body)
-    gateway.clientToken.generate({}, function(err, response) {
-        // return console.log(response)
-        if (!err) {
-            res.render("payment", {
-                isAuth: req.session.userid,
-                clientToken: response.clientToken
-            })
-        } else {
-            res.json({
-                err: err
-            })
-        }
-    })
+
+    if(req.session.userid) {
+        gateway.clientToken.generate({}, function(err, response) {
+            // return console.log(response)
+            if (!err) {
+                res.render("payment", {
+                    isAuth: req.session.userid,
+                    clientToken: response.clientToken
+                })
+            } else {
+                res.json({
+                    err: err
+                })
+            }
+        })
+    } else {
+        req.flash("errorMeg", "your must be logged and try again")
+        res.redirect("/")
+    }
+    
 }
 
 
+
+
+// api for payment 
 exports.postProcessPayment = (req, res, next) => {
 
     // return console.log(req.body)
@@ -43,10 +53,9 @@ exports.postProcessPayment = (req, res, next) => {
         }
       }, (err, result) => {
           if(err) {
-              res.json({err: err})
+              res.json({ err: err })
           } else {
-              res.json(result)
-              return console.log(result)
+            res.json(result)
           }
       });
 

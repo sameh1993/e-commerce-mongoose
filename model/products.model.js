@@ -50,6 +50,17 @@ const productSchema = mongoose.Schema({
 
 })
 
+
+// methos to search in products
+exports.searchOnAllProducts = ( name ) => {
+    try {
+        const getProducts = product.findMany({ name: { $regex: name } })
+        return getProducts
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const product = mongoose.model("product", productSchema)
 const URL_DB = process.env.connectDB
 

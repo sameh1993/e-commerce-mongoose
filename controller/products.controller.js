@@ -2,6 +2,36 @@ const productsModel = require("../model/products.model")
 
 const fs = require("fs")
 
+
+exports.getSearchForProducts = (req, res, next) => {
+    productsModel.searchOnAllProducts().then(result => {
+        productsModel.distinctBrandByCategory(result[0].category).then(brands => {
+            if(["mobiles", "computers"].indexOf(result[0].category) > -1) {
+                res.render("product", {
+                    isAuth: req.session.userid,
+                    isAdmin: req.session.isAdmin,
+    
+                    // param: req.query,
+                    products: result,
+                    brands: brands
+                })
+            } else {
+                res.render("product2", {
+                    isAuth: req.session.userid,
+                    isAdmin: req.session.isAdmin,
+    
+                    // param: req.query,
+                    products: result,
+                    brands: brands
+                })
+            }
+        })
+       
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
 exports.getProduct = (req, res) => {
     // return console.log(req.params.id)
     productsModel.getProductById(req.params.id).then(result => {
@@ -14,6 +44,7 @@ exports.getProduct = (req, res) => {
         console.log(err)
     })
 }
+
 
 exports.getAddPeoductPage = (req, res) => {
     res.render("add-product", {
@@ -100,7 +131,6 @@ exports.fetchDataByCateries = (req, res) => {
 }
 
 exports.getProductsByPrice = (req, res) => {
-
     const params = req.params.id;
     let filter = {};
     if (params.includes("&")) {
@@ -135,11 +165,8 @@ exports.getProductsByPrice = (req, res) => {
 exports.getDeleteproduct = (req, res) => {
     productsModel.deleteProductById(req.params.id).then(result => {
         res.redirect("/")
-        console.log("sameh sayed")
-        console.log(result)
     }).catch(err => {
         console.log(err)
-        console.log("sameh")
     })
 }
 

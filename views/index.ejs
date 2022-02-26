@@ -118,66 +118,7 @@
                             <div class="row">
                                 <% if(mobiles.length> 0) { %>
                                 <% for(let prod of mobiles) { %>
-                                <div class="item col-md-4 product-men mt-5">
-                                    <div class="men-pro-item simpleCart_shelfItem">
-                                        <div class="men-thumb-item text-center">
-                                            <% let imgObj=prod.images %>
-                                            <img src="/images/<%= prod.category %>/<%= imgObj[0] %>" alt="">
-                                            <div class="men-cart-pro">
-                                                <div class="inner-men-cart-pro">
-                                                    <a href="/product/<%= prod._id %>"
-                                                        class="link-product-add-cart">QuickView</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info-product text-center border-top mt-4">
-                                            <h4 class="pt-1">
-                                                <a href="/product/<%= prod._id %>">
-                                                    <%= prod.productName + " " + prod.discount %>
-                                                </a>
-                                            </h4>
-                                            <div class="info-product-price my-2">
-                                                <% if(prod.discount) {  %>
-                                                <span class="item_price"> EGP
-                                                    <%= prod.price - ( ( prod.price * prod.discount) / 100 )%>
-                                                </span>
-                                                <del>
-                                                    <%= prod.price %>
-                                                </del>
-                                                <% } else {  %>
-                                                <span> <%= "$" + prod.price %> </span>
-                                                <% } %>
-
-                                            </div>
-                                            <div
-                                                class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                <form method="post" action="https://www.paypal.com/cgi-bin/webscr"
-                                                    target="paypal">
-                                                    <fieldset>
-                                                        <input type="hidden" name="cmd" value="_cart" />
-                                                        <input type="hidden" name="add" value="1" />
-                                                        <input type="hidden" name="business" value=" " />
-                                                        <input type="hidden" name="category" value="<%= prod.category %>" />
-                                                        <input type="hidden" name="image"
-                                                            value="<%= prod.images[0] %>" />
-                                                        <input type="hidden" name="id" value="<%= prod._id %>" />
-                                                        <input type="hidden" name="item_name"
-                                                            value="<%= prod.productName %>" />
-                                                        <input type="hidden" name="amount" value="<%= +prod.price %>" />
-                                                        <input type="hidden" name="discount_amount"
-                                                            value="<%= (+prod.discount * +prod.price) / 100 %>" />
-                                                        <input type="hidden" 
-                                                        <input type="hidden" name="currency_code" value="USD" />
-                                                        <div class="some d-flex">
-                                                            <input type="submit" name="submit" value="Add to cart"
-                                                                class="button btn" />
-                                                        </div>
-                                                    </fieldset>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <%- include("parts/product-com", {prod: prod}) %> 
                                 <% } %>
                                 <% } else { %>
                                 <div class="alert alert-danger text-small text-center text-capitalize mt-4 w-100">
@@ -197,66 +138,7 @@
 
                                 <% if(tvScreen.length > 0) { %>
                                 <% for(let tv of tvScreen) { %>
-
-                                <div class="col-md-4 product-men mt-5">
-                                    <div class="men-pro-item simpleCart_shelfItem">
-                                        <div class="men-thumb-item text-center">
-                                            <img src="/images/<%= tv.category %>/<%= tv.images[0] %>" alt="">
-
-                                            <div class="men-cart-pro">
-                                                <div class="inner-men-cart-pro">
-                                                    <a href="/product/<%= tv._id %>" class="link-product-add-cart">Quick
-                                                        View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info-product text-center border-top mt-4">
-                                            <h4 class="pt-1">
-                                                <a href="/product/<%= tv._id %>">
-                                                    <%= tv.productName %>
-                                                </a>
-                                            </h4>
-                                            <div class="info-product-price my-2">
-                                                <span class="item_price"> EGP <%= tv.price -
-                                                                                    ( ( tv.price * tv.discount) / 100
-                                                                                    )%> </span>
-                                                <del>
-                                                    <%= tv.price %>
-                                                </del>
-                                            </div>
-                                            <div
-                                                class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                <form action="#" method="post">
-                                                    <fieldset>
-                                                        <input type="hidden" name="cmd" value="_cart" />
-                                                        <input type="hidden" name="add" value="1" />
-                                                        <input type="hidden" name="business" value="" />
-                                                        <input type="hidden" name="category" value="<%= tv.category %>" />
-                                                        <input type="hidden" name="id" value="<%= tv._id %>" />
-                                                        <input type="hidden" name="image"
-                                                            value="<%= tv.images[0] %>" />
-                                                        <input type="hidden" class="productName" name="item_name"
-                                                            value="<%= tv.productName %>" />
-                                                        <input type="hidden" class="price" name="amount"
-                                                            value="<%= +tv.amount %>" />
-                                                        <input type="hidden" class="discount" name="discount_amount"
-                                                            value="<%= +tv.discount %>" />
-                                                        <input type="hidden" class="currencyCode" name="currency_code"
-                                                            value="USD" />
-                                                        <input type="hidden" name="return" value=" " />
-                                                        <div class="some d-flex">
-                                                            <input type="submit" name="submit" value="Add to cart"
-                                                                class="button btn" />
-
-
-
-                                                        </div>
-                                                    </fieldset>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <%- include("parts/product-com", {prod: tv}) %> 
                                 <% } %>
                                 <% } else { %>
                                 <div class="alert alert-danger text-center text-capitalize mt-4 w-100">
@@ -288,68 +170,7 @@
                             <div class="row">
                                 <% if(houseapplince.length> 0) { %>
                                 <% for(let houseItem of houseapplince) { %>
-                                <div class="col-md-4 product-men mt-5">
-                                    <div class="men-pro-item simpleCart_shelfItem">
-                                        <div class="men-thumb-item text-center">
-                                            <img src="/images/<%= houseItem.category %>/<%= houseItem.images[0] %>"
-                                                alt="">
-                                            <div class="men-cart-pro">
-                                                <div class="inner-men-cart-pro">
-                                                    <a href="/product/<%= houseItem._id %>"
-                                                        class="link-product-add-cart">Quick
-                                                        View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="product-new-top">New</span>
-                                        <div class="item-info-product text-center border-top mt-4">
-                                            <h4 class="pt-1">
-                                                <a href="/product/<%= houseItem._id %>">
-                                                    <%= houseItem.productName %>
-                                                </a>
-                                            </h4>
-                                            <div class="info-product-price my-2">
-                                                <span class="item_price"> EGP
-                                                    <%= +houseItem.price - ( (+houseItem.price * +houseItem.discount) / 100 )%>
-                                                </span>
-                                                <del>
-                                                    <%= houseItem.price %>
-                                                </del>
-                                            </div>
-                                            <div
-                                                class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                <form action="#" method="post">
-                                                    <fieldset>
-                                                        <input type="hidden" name="cmd" value="_cart" />
-                                                        <input type="hidden" name="add" value="1" />
-                                                        <input type="hidden" name="business" value=" " />
-                                                        <input type="hidden" name="id" value="<%= houseItem._id %>" />
-                                                        <input type="hidden" name="category" value="<%= houseItem.category %>" />
-                                                        <input type="hidden" name="image"
-                                                            value="<%= houseItem.images[0] %>" />
-                                                        <input type="hidden" name="item_name"
-                                                            value="<%= houseItem.productName %>" />
-                                                        <input type="hidden" name="amount"
-                                                            value="<%= +houseItem.amount %>" />
-                                                        <input type="hidden" name="discount_amount"
-                                                            value="<%= +houseItem.discount %>" />
-                                                        <input type="hidden" name="currency_code" value="USD" />
-                                                        <input type="hidden" name="return" value=" " />
-                                                        <input type="hidden" name="cancel_return" value=" " />
-                                                        <div class="some d-flex">
-                                                            <input type="submit" name="submit" value="Add to cart"
-                                                                class="button btn" />
-
-
-
-                                                        </div>
-                                                    </fieldset>
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                    <%- include("parts/product.com", { prod: houseItem }) %> 
                                 <% } %>
                                 <% } else { %>
                                 <div class="alert  alert-danger text-center text-capitalize w-100 mt-4">
@@ -627,7 +448,7 @@
     <%- include('parts/footer') %>
     <!-- end footer -->
 
-    <input type="text" class="isAuth" value="<%= isAuth ?  isAuth : undefined  %>" />
+    <input type="hidden" class="isAuth" value="<%= isAuth ?  isAuth : undefined  %>" />
 
     <!-- js-files -->
     <!-- jquery -->
@@ -694,22 +515,7 @@
 
         })
 
-        $(".add-cart").click(function () {
-
-            const parent = $(this).parents(".parent")
-
-
-
-            const data = {
-                "business": "user@example.com",
-                "item_name": parent.find(".productName").val(),
-                "discount_amount": parent.find(".discount").val(),
-                "amount": parent.find(".price").val(),
-                "currency_code": parent.find("currencyCode").val()
-            }
-
-            paypals.minicarts.cart.add(data)
-        })
+        
 
         paypals.minicarts.cart.on('checkout', function (evt) {
             var items = this.items(),

@@ -317,7 +317,7 @@ $("document").ready(function () {
         console.log('clicked me')
     })
 
-    $(".tittle-w3l button").on("click", function () {
+    $(".tittle-w3l button, .fa-cart-arrow-down").on("click", function () {
         console.log("sameh")
     })
 
@@ -349,7 +349,7 @@ $("document").ready(function () {
 
     console.log(typeof isAuth, isAuth.val())
 
-    $(".w3view-cart").click(function () {
+    $(".w3view-cart, .w3view-cart i").click(function () {
         console.log(isAuth.val())
         if (isAuth.val()) {
             paypals.minicarts.view.show()
@@ -489,6 +489,20 @@ $("document").ready(function () {
             console.log(err)
         })
 
+    })
+
+
+    // add a new product to cart
+    $(".add-cart").click(function () {
+
+        console.log("sameh")
+
+        const parent = $(this).parents(".form-data")
+        const data = { "discount_amount": +parent.find(".discount").val(), "item_name": parent.find(".productName").val(), "amount": +parent.find(".amount").val(), "currency_code": "EGP" }
+        paypals.minicarts.cart.add(data)
+        // paypals.minicarts.cart.add(data)
+
+        console.log(data)
     })
 
 

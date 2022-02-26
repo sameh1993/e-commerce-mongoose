@@ -1,0 +1,57 @@
+<div class="item col-md-4 product-men mt-5">
+    <div class="men-pro-item simpleCart_shelfItem">
+        <div class="men-thumb-item text-center">
+            <% let imgObj=prod.images %>
+            <img src="/images/<%= prod.category %>/<%= imgObj[0] %>" alt="">
+            <div class="men-cart-pro">
+                <div class="inner-men-cart-pro">
+                    <a href="/product/<%= prod._id %>"
+                        class="link-product-add-cart">QuickView</a>
+                </div>
+            </div>
+        </div>
+        <div class="item-info-product text-center border-top mt-4">
+            <h4 class="pt-1">
+                <a href="/product/<%= prod._id %>">
+                    <%= prod.productName + " " + prod.discount %>
+                </a>
+            </h4>
+            <div class="info-product-price my-2">
+                <% if(prod.discount) {  %>
+                <span class="item_price"> EGP
+                    <%= prod.price - ( ( prod.price * prod.discount) / 100 )%>
+                </span>
+                <del>
+                    <%= prod.price %>
+                </del>
+                <% } else {  %>
+                <span> <%= "$" + prod.price %> </span>
+                <% } %>
+
+            </div>
+            <div
+                class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                <form class="form-data">
+                    <fieldset>
+                        <input type="hidden" name="business" value=" " />
+                        <input type="hidden" class="category" name="category" value="<%= prod.category %>" />
+                        <input type="hidden" class="image" name="image"
+                            value="<%= prod.images[0] %>" />
+                        <input type="hidden" class="id" name="id" value="<%= prod._id %>" />
+                        <input type="hidden" class="productName" name="item_name"
+                            value="<%= prod.productName %>" />
+                        <input type="hidden" class="amount" name="amount" value="<%= +prod.price %>" />
+                        <input type="hidden" class="discount" name="discount_amount"
+                            value="<%= (+prod.discount * +prod.price) / 100 %>" />
+                            
+                        <input type="hidden" class="currency_code" name="currency_code" value="EGP" />
+                        <div class="some d-flex">
+                            <input type="button" class="add-cart btn btn-primary mt-0" name="submit" value="Add to cart"
+                                class="button btn" />
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
