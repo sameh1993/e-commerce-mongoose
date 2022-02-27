@@ -21,6 +21,24 @@ const userSchema = new mongoose.Schema({
   isAdmin: {
     type: Number,
     default: 0,
+  },
+  phoneNo: {
+    type: String,
+    trim: true
+  },
+  address: {
+    streat: {
+      type: String,
+      trim: true
+    },
+    landmark: {
+      type: String,
+      trim: true
+    },
+    addressName: {
+      type: String,
+      trim: true
+    }
   }
 });
 
@@ -69,7 +87,8 @@ exports.loginUser = (data) => {
         return User.find({ email: data.email });
       })
       .then((user) => {
-        if (!user) {
+        // return console.log(user)
+        if (user.length <= 0) {
           mongoose.disconnect();
           reject("there is not found");
         } else {
@@ -85,3 +104,24 @@ exports.loginUser = (data) => {
       });
   });
 };
+
+
+
+exports.updateDataUser = (userid, data) => {
+  console.log(data)
+  try {
+    const updateDataUser = User.updateOne({ _id: userid }, {
+      $set: {
+        phoneNo: data.phoneNo,
+        address: {
+          street: data.street,
+          landmark: data.landmark,
+          addressType: data.addressType
+        }
+      }
+    })
+    return updateDataUser
+  } catch (err) {
+    console.log(err)
+  }
+}

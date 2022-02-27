@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
 $("document").ready(function () {
 
 
@@ -5,6 +11,10 @@ $("document").ready(function () {
     var myTypes = []
 
     $(".discount input").change(function () {
+<<<<<<< HEAD
+=======
+
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
         if ($(this).val() == true) {
             $(this).attr("value", false)
         }
@@ -26,6 +36,7 @@ $("document").ready(function () {
         }
         fetchData()
     })
+
 
     function fetchData() {
 
@@ -63,6 +74,7 @@ $("document").ready(function () {
                 }
             }
         }
+
 
         const filter = { filterMobiles, filterTvScreen, filterHousehold, price }
         if (price) {
@@ -264,7 +276,7 @@ $("document").ready(function () {
 
         axios.post("/api/auth/signup", data).then(result => {
             if (result.data.err) {
-                $(".modal-body .alert-danger").html(result.data.err).slideDown(200)
+                $(".modal-body .alert-danger.register").html(result.data.err).slideDown(200)
             } else {
                 $("#exampleModal2, .modal-backdrop").removeClass("show d-block-modal")
                 $(".message").html("welcome form jquery").addClass("active")
@@ -274,8 +286,14 @@ $("document").ready(function () {
         })
     })
 
+    var isAuth = $(".isAuth")
+
     // login user
+<<<<<<< HEAD
     $("button.login").click(function (e) {
+=======
+    $("button.login").on("click", function (e) {
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
         e.preventDefault()
         const parent = $(this).parents(".form-login")
         const data = {
@@ -285,9 +303,10 @@ $("document").ready(function () {
         axios.post("/api/auth/login", data).then(result => {
             console.log(result)
             if (result.data.err) {
-                $(".modal .alert-danger").html(result.data.err).slideDown(300)
+                $(".modal .alert-danger.login").html(result.data.err).slideDown(300)
             } else {
                 $(".register").hide()
+<<<<<<< HEAD
                 $(".logout").show()
                 $("body").removeClass("modal-open")
                 // $(".links").append(`
@@ -297,20 +316,39 @@ $("document").ready(function () {
                 // `)
                 $(".modal").hide()
                 $(".message").addClass("alert-info").html("user is login").slideDown(700, function () {
+=======
+                $(".links").append(`
+                    <li class="text-center text-white logout">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Log Out
+                    </li>
+                `)
+                $(".modal").hide()
+                $(".message").addClass("alert-info").html("user is logged").slideDown(700, function () {
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
                     $(this).delay(4000).slideUp(500)
                 })
                 $(".d-none").addClass("d-block").removeClass("d-none")
+                isAuth.attr("value", result.data.id)
             }
-
         }).catch(err => {
             console.log(err)
         })
     })
 
+    $(".header-right ul li.logout").click(function () {
+        console.log('clicked me')
+    })
 
+    $(".tittle-w3l button, .fa-cart-arrow-down").on("click", function () {
+        console.log("sameh")
+    })
+
+<<<<<<< HEAD
     $(".logout").click(function () {
+=======
+    $(document).on("click", ".logout", function () {
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
         axios.get("/api/auth/logout").then(result => {
-            console.log(result)
             if (result.data.err) {
                 $(".message").html(result.data.err).addClass("alert-danger")
             } else {
@@ -328,14 +366,26 @@ $("document").ready(function () {
                 $(".message").addClass("alert-info").html("user is logout").slideDown(700, function () {
                     $(this).delay(4000).slideUp(500)
                 })
+                isAuth.attr("value", "")
             }
         }).catch(err => {
             console.log(err)
         })
     })
 
-    // slider array
+    console.log(typeof isAuth, isAuth.val())
 
+    $(".w3view-cart, .w3view-cart i").click(function () {
+        console.log(isAuth.val())
+        if (isAuth.val()) {
+            paypals.minicarts.view.show()
+        } else {
+            $(".message").addClass("alert-info").html("you must be logged in and try again").slideDown(700, function () {
+                $(this).delay(4000).slideUp(500)
+            })
+        }
+
+    })
 
     // to delete slide of sliders
     $(".carousel-inner .fa-trash").click(function () {
@@ -466,5 +516,39 @@ $("document").ready(function () {
         })
 
     })
+
+
+    // add a new product to cart
+    $(".add-cart").click(function () {
+
+        console.log("sameh")
+
+        const parent = $(this).parents(".form-data")
+        const data = { "discount_amount": +parent.find(".discount").val(), "item_name": parent.find(".productName").val(), "amount": +parent.find(".amount").val(), "currency_code": "EGP" }
+        paypals.minicarts.cart.add(data)
+        // paypals.minicarts.cart.add(data)
+
+        console.log(data)
+    })
+
+
+
+
+    /* =================================================
+       =============== ckeckout page ==================== */
+
+    $(".submit").click(function () {
+        const parent = $(this).parents(".creditly-card-form")
+
+        let data = {
+            street: parent.find(".street").val(),
+            phoneNo: parent.find(".phoneNo").val(),
+            landmark: parent.find(".landmark").val(),
+            addressType: parent.find(".addressType").val()
+        }
+
+        console.log(data)
+    })
+
 
 })

@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const fs = require("fs")
+const path = require("path")
 const {
   getProduct,
   getAddPeoductPage,
@@ -27,7 +29,17 @@ router.post(
   multer({
     storage: multer.diskStorage({
       destination: (req, file, cb) => {
+        const url = path.join(__dirname, "..", "assets", "images", req.body.category)
+        console.log(url)
+        if(!fs.existsSync(url)) {
+          fs.mkdir(url, err => {
+            console.log("create " + req.body.category)
+          })
+        } else {
+          console.log("not found Mobiles")
+        }
         cb(null, "assets/images/" + req.body.category);
+
       },
       filename: (req, file, cb) => {
         cb(null, Date.now() + "-" + file.originalname);
@@ -59,9 +71,9 @@ postEditProductPage)
 
 router.get("/delete/:id", getDeleteproduct)
 
-router.get("/checkout", getcheckoutPage)
-
 router.get("/:id", getProduct);
+
+router.post("/checkout", getcheckoutPage)
 
 
 

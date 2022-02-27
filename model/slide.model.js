@@ -70,7 +70,6 @@ exports.deleteSliderById = (id) => {
             }).then(result => {
                 resolve(result)
             }).catch(err => {
-                // mongoose.disconnect()
                 reject(err)
             })
         })

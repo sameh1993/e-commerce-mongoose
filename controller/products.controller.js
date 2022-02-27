@@ -2,6 +2,36 @@ const productsModel = require("../model/products.model")
 
 const fs = require("fs")
 
+
+exports.getSearchForProducts = (req, res, next) => {
+    productsModel.searchOnAllProducts().then(result => {
+        productsModel.distinctBrandByCategory(result[0].category).then(brands => {
+            if(["mobiles", "computers"].indexOf(result[0].category) > -1) {
+                res.render("product", {
+                    isAuth: req.session.userid,
+                    isAdmin: req.session.isAdmin,
+    
+                    // param: req.query,
+                    products: result,
+                    brands: brands
+                })
+            } else {
+                res.render("product2", {
+                    isAuth: req.session.userid,
+                    isAdmin: req.session.isAdmin,
+    
+                    // param: req.query,
+                    products: result,
+                    brands: brands
+                })
+            }
+        })
+       
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
 exports.getProduct = (req, res) => {
     // return console.log(req.params.id)
     productsModel.getProductById(req.params.id).then(result => {
@@ -15,12 +45,17 @@ exports.getProduct = (req, res) => {
     })
 }
 
+
 exports.getAddPeoductPage = (req, res) => {
-    res.render("add-product")
+    res.render("add-product", {
+        isAuth: req.session.userid,
+        isAdmin: req.session.isAdmin
+    })
 }
 
 exports.postAddNewProduct = (req, res) => {
     productsModel.insertNewProduct(req.body, req.files).then(result => {
+        console.log(result)
         res.redirect("/product/" + result._id)
     }).catch(err => {
         console.log(err)
@@ -42,10 +77,11 @@ exports.getEditProductPage = (req, res) => {
     })
 }
 
+
 exports.postEditProductPage = (req, res) => {
     const id = req.params.id
     productsModel.updateProductById(req.body, req.files, id).then(result => {
-        for(let img of req.body.removeImages) {
+        for (let img of req.body.removeImages) {
             fs.unlink(img, function() {
                 console.log("remove", img)
             })
@@ -56,14 +92,15 @@ exports.postEditProductPage = (req, res) => {
 }
 
 exports.getProductsByCategory = (req, res) => {
-   console.log(req.query)
+    // return console.log(req.query.category)
     productsModel.fetchProductsByCategory(req.query).then(result => {
         productsModel.distinctBrandByCategory(req.query.category).then(brands => {
-            if(["mobiles", "computers"].indexOf(req.query.category) > -1) {
+            // console.log(brands, "brands")
+            if (["mobiles", "computers"].indexOf(req.query.category) > -1) {
                 res.render("product", {
                     isAuth: req.session.userid,
                     isAdmin: req.session.isAdmin,
-                    
+
                     param: req.query,
                     products: result,
                     brands: brands
@@ -72,39 +109,46 @@ exports.getProductsByCategory = (req, res) => {
                 res.render("product2", {
                     isAuth: req.session.userid,
                     isAdmin: req.session.isAdmin,
-                    
+
                     param: req.query,
                     products: result,
                     brands: brands
                 })
             }
-            
+
         })
     }).catch(err => {
         console.log(err)
     })
 }
 
-exports.getProductsByPrice = (req, res) => {
+exports.fetchDataByCateries = (req, res) => {
+    productsModel.distinctBrandByCategoryWithFetchSomePreperty(req.query.category).then(result => {
+        console.log(result)
+    }).catch(err => {
+        console.log(err)
+    })
+}
 
+exports.getProductsByPrice = (req, res) => {
     const params = req.params.id;
     let filter = {};
     if (params.includes("&")) {
-      const splite = params.split("&");
-      filter = {
-        $gt: +splite[0],
-        $lt: +splite[1],
-      };
+        const splite = params.split("&");
+        filter = {
+            $gt: +splite[0],
+            $lt: +splite[1],
+        };
     } else {
-      if (params == 1000) {
-        filter = {
-          $lt : 1000
+        if (params == 1000) {
+            filter = {
+                $lt: 1000
+            }
+        } else {
+            filter = {
+                $gt: 30000
+            }
         }
-      } else {
-        filter = {
-          $gt: 30000
-        }
-      }
     }
     const currentFilter = { price: filter }
     productsModel.fetchProductsByCategory(currentFilter).then(result => {
@@ -119,11 +163,10 @@ exports.getProductsByPrice = (req, res) => {
 
 
 exports.getDeleteproduct = (req, res) => {
-    // return console.log(req.params)
     productsModel.deleteProductById(req.params.id).then(result => {
         res.redirect("/")
-    }).catch(err =>{
-        res.redirect(`/product/${id}`)
+    }).catch(err => {
+        console.log(err)
     })
 }
 
@@ -134,4 +177,3 @@ exports.getcheckoutPage = (req, res) => {
         isAdmin: req.session.isAdmin,
     })
 }
-

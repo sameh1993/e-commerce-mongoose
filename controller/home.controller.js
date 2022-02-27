@@ -28,27 +28,29 @@ exports.getHomepage = (req, res) => {
             }
         }
     }
+
+
     productModel.getProductsByFilter(filterMobiles).then((mobiles) => {
-            productModel.getProductsByFilter(filterTvScreen).then((tvScreen) => {
-                productModel.getProductsByFilter(filterHousehold).then((houseHold) => {
-                    getSlider().then((slider) => {
-                        res.render("index", {
-                            isAuth: req.session.userid,
-                            isAdmin: req.session.isAdmin,
-
-                            mobiles: mobiles,
-                            houseapplince: houseHold,
-                            tvScreen: tvScreen,
-                            priceValue: id || "sameh",
-                            slider: slider,
-                            types: ["mobile", "handphone"],
-                        });
-
+        productModel.getProductsByFilter(filterTvScreen).then((tvScreen) => {
+            productModel.getProductsByFilter(filterHousehold).then((houseHold) => {
+                getSlider().then((slider) => {
+                    console.log(req.session.userid, 'isAuth')
+                    res.render("index", {
+                        isAuth: req.session.userid,
+                        isAdmin: req.session.isAdmin,
+                        mobiles: mobiles,
+                        houseapplince: houseHold,
+                        tvScreen: tvScreen,
+                        priceValue: id || "sameh",
+                        slider: slider,
+                        types: ["mobile", "handphone"],
                     });
+
                 });
             });
+        });
 
-        })
+    })
         .catch((err) => {
             console.log(err);
         });
@@ -89,3 +91,11 @@ exports.updateProductByFilter = (req, res) => {
             });
         });
 };
+
+
+exports.getContactUsPage = (req, res) => {
+    res.render("contact", {
+        isAuth: req.session.userid,
+        isAdmin: req.session.isAdmin,
+    })
+}
