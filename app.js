@@ -7,7 +7,10 @@ const MongoDBStore = require("connect-mongodb-session")(sessions)
 const flash = require("express-flash")
 
 // create app 
-const app = express()
+const app = express() 
+
+
+
 
 app.use(express.static(path.join(__dirname, "assets")))
 app.use(express.static(path.join(__dirname, "node_modules")))
@@ -15,17 +18,18 @@ app.use(express.static(path.join(__dirname, "views")))
 app.set("view engine", 'ejs')
 
 var store = new MongoDBStore({
-    uri: process.env.connectDB,
-    collection: 'sessions'
-  });
+  uri: process.env.connectDB,
+  collection: 'sessions'
+});
 
 const oneDay = 1000 * 60 * 60 * 24;
+
 app.use(sessions({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
-    store: store,
-    cookie: { maxAge: oneDay },
-    resave: false 
+  secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+  saveUninitialized: true,
+  store: store,
+  cookie: { maxAge: oneDay },
+  resave: false
 }));
 
 app.use(flash())

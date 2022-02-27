@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="">
 
 <%- include("parts/head") %>
 
-    <body dir="">
+    <body>
 
         <!-- start top header -->
 
@@ -11,7 +11,7 @@
 
             <!-- end top header -->
 
-            <!-- //header-bottom -->
+            <!-- // header-bottom -->
             <!-- navigation -->
             <%- include("parts/navbar") %>
                 <!-- //navigation -->
@@ -22,21 +22,24 @@
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <!-- Indicators-->
                     <ol class="carousel-indicators">
-                        <% for(const [index, element] of slider.entries()) {  %>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<% index == 0 ? 'active' : '' %>"></li>
+                        <% for(const [index, element] of slider.entries()) { %>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>"
+                                class="<% index == 0 ? 'active' : '' %>"></li>
                             <% } %>
                     </ol>
                     <div class="carousel-inner">
                         <input type="hidden" class="slider" value="<%= slider %>" />
 
-                        <% for(let i=0; i < slider.length; i++) {  %>
-                            <div style="background-image: url('/images/<%= slider[i].image %>')" class="carousel-item item<%= i + 1 %> <%= i == 0 ? 'active' : '' %>">
-                                <i data-id="<%= slider[i]._id %>" class="fa fa-trash <%= isAdmin ? 'd-block' : 'd-none' %>"></i>
+                        <% for(let i=0; i < slider.length; i++) { %>
+                            <div style="background-image: url('/images/<%= slider[i].image %>')"
+                                class="carousel-item item<%= i + 1 %> <%= i == 0 ? 'active' : '' %>">
+                                <i data-id="<%= slider[i]._id %>"
+                                    class="fa fa-trash <%= isAdmin ? 'd-block' : 'd-none' %>"></i>
                                 <div class="container">
                                     <div class="w3l-space-banner">
                                         <div class="carousel-caption p-lg-5 p-sm-4 p-3">
                                             <p>
-                                                <%-  slider[i].subTitle %>
+                                                <%- slider[i].subTitle %>
                                             </p>
                                             <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
                                                 <%- slider[i].title %>
@@ -67,11 +70,13 @@
                             <form class="form">
                                 <h4 class="text-center b-3"> add slider </h4>
                                 <div class="form-group">
-                                    <input type="text" placeholder="EX.. get now <span> 00% </span> discount " class="form-control subtitle" name="subTitle" />
+                                    <input type="text" placeholder="EX.. get now <span> 00% </span> discount "
+                                        class="form-control subtitle" name="subTitle" />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" placeholder="enter  title" class="form-control title" name="title" />
+                                    <input type="text" placeholder="enter  title" class="form-control title"
+                                        name="title" />
                                 </div>
 
                                 <div class="form-group">
@@ -87,8 +92,9 @@
                 </div>
                 <!-- //banner -->
 
-                <% if(priceValue) {  %>
-                    <input type="hidden" class="url" value="<%= priceValue != 'sameh' ? JSON.stringify(priceValue) : 0 %>" />
+                <% if(priceValue) { %>
+                    <input type="hidden" class="url"
+                        value="<%= priceValue != 'sameh' ? JSON.stringify(priceValue) : 0 %>" />
                     <% } %>
 
 
@@ -101,7 +107,8 @@
                                 <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
                                     <span>O</span>ur
                                     <span>N</span>ew
-                                    <span>P</span>roducts</h3>
+                                    <span>P</span>roducts
+                                </h3>
                                 <!-- //tittle heading -->
                                 <div class="row">
                                     <input type="hidden" class="component" value="<%= include('parts/head') %>">
@@ -110,22 +117,27 @@
                                         <div class="wrapper">
                                             <!-- first section -->
                                             <div class="mobiles product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                                                <h3 class="heading-tittle text-center font-italic">New Brand Mobiles</h3>
+                                                <h3 class="heading-tittle text-center font-italic">New Brand Mobiles
+                                                </h3>
                                                 <div class="row">
-                                                    <% if(mobiles.length > 0) {  %>
-                                                        <% for(let prod of mobiles) {  %>
+                                                    <% if(mobiles.length> 0) { %>
+                                                        <% for(let prod of mobiles) { %>
                                                             <div class="item col-md-4 product-men mt-5">
                                                                 <div class="men-pro-item simpleCart_shelfItem">
                                                                     <div class="men-thumb-item text-center">
-                                                                        <% let imgObj = prod.images%>
-                                                                            <img src="/images/<%= prod.category %>/<%= imgObj[0] %>" alt="">
+                                                                        <% let imgObj=prod.images%>
+                                                                            <img src="/images/<%= prod.category %>/<%= imgObj[0] %>"
+                                                                                alt="">
                                                                             <div class="men-cart-pro">
                                                                                 <div class="inner-men-cart-pro">
-                                                                                    <a href="/product/<%= prod._id %>" class="link-product-add-cart">Quick View</a>
+                                                                                    <a href="/product/<%= prod._id %>"
+                                                                                        class="link-product-add-cart">Quick
+                                                                                        View</a>
                                                                                 </div>
                                                                             </div>
                                                                     </div>
-                                                                    <div class="item-info-product text-center border-top mt-4">
+                                                                    <div
+                                                                        class="item-info-product text-center border-top mt-4">
                                                                         <h4 class="pt-1">
                                                                             <a href="/product/<%= prod._id %>">
                                                                                 <%= prod.productName %>
@@ -133,30 +145,55 @@
                                                                         </h4>
                                                                         <div class="info-product-price my-2">
                                                                             <span class="item_price"> EGP
-													<%= prod.price - ( ( prod.price * prod.discount) / 100 )%>
-												</span>
-                                                                            <del> <%= prod.price %> </del>
+                                                                                <%= prod.price - ( ( prod.price *
+                                                                                    prod.discount) / 100 )%>
+                                                                            </span>
+                                                                            <del>
+                                                                                <%= prod.price %>
+                                                                            </del>
                                                                         </div>
-                                                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                                                            <form method="post" action="https://www.paypal.com/cgi-bin/webscr" target="paypal">
+                                                                        <div
+                                                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                                            <form method="post"
+                                                                                action="https://www.paypal.com/cgi-bin/webscr"
+                                                                                target="paypal">
                                                                                 <fieldset>
-                                                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                                                    <input type="hidden" name="add" value="1" />
-                                                                                    <input type="hidden" name="business" value=" " />
-                                                                                    <input type="hidden" name="item_name" value="<%= prod.productName %>" />
-                                                                                    <input type="hidden" name="amount" value="<%= +prod.amount %>" />
-                                                                                    <input type="hidden" name="discount_amount" value="<%= +prod.discount %>" />
-                                                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                                                    <input type="hidden" name="return" value=" " />
-                                                                                    <input type="hidden" name="cancel_return" value=" " />
+                                                                                    <input type="hidden" name="cmd"
+                                                                                        value="_cart" />
+                                                                                    <input type="hidden" name="add"
+                                                                                        value="1" />
+                                                                                    <input type="hidden" name="business"
+                                                                                        value=" " />
+                                                                                    <input type="hidden"
+                                                                                        name="item_name"
+                                                                                        value="<%= prod.productName %>" />
+                                                                                    <input type="hidden" name="amount"
+                                                                                        value="<%= +prod.amount %>" />
+                                                                                    <input type="hidden"
+                                                                                        name="discount_amount"
+                                                                                        value="<%= +prod.discount %>" />
+                                                                                    <input type="hidden"
+                                                                                        name="currency_code"
+                                                                                        value="USD" />
+                                                                                    <input type="hidden" name="return"
+                                                                                        value=" " />
+                                                                                    <input type="hidden"
+                                                                                        name="cancel_return"
+                                                                                        value=" " />
                                                                                     <div class="some d-flex">
-                                                                                        <input type="submit" name="submit" value="Add to cart" class="button btn" />
+                                                                                        <input type="submit"
+                                                                                            name="submit"
+                                                                                            value="Add to cart"
+                                                                                            class="button btn" />
 
-                                                                                        <button class="btn btn-danger <%= isAdmin ? 'd-block' : 'd-none' %>"> 
-																	<a href="/product/delete/<%= prod._id %>">
-																		<i class="fa fa-trash"></i>
-																	</a>
-																</button>
+                                                                                        <button
+                                                                                            class="btn btn-danger <%= isAdmin ? 'd-block' : 'd-none' %>">
+                                                                                            <a
+                                                                                                href="/product/delete/<%= prod._id %>">
+                                                                                                <i
+                                                                                                    class="fa fa-trash"></i>
+                                                                                            </a>
+                                                                                        </button>
                                                                                     </div>
                                                                                 </fieldset>
                                                                             </form>
@@ -165,8 +202,9 @@
                                                                 </div>
                                                             </div>
                                                             <% } %>
-                                                                <% } else {  %>
-                                                                    <div class="alert alert-danger text-small text-center text-capitalize mt-4 w-100">
+                                                                <% } else { %>
+                                                                    <div
+                                                                        class="alert alert-danger text-small text-center text-capitalize mt-4 w-100">
                                                                         there are not products yet
                                                                     </div>
                                                                     <% } %>
@@ -181,21 +219,25 @@
                                                 <h3 class="heading-tittle text-center font-italic">Tv & Audio</h3>
                                                 <div class="row">
 
-                                                    <% if(tvScreen.length > 0) {  %>
-                                                        <% for(let tv of tvScreen) {  %>
+                                                    <% if( tvScreen.length> 0 ) { %>
+                                                        <% for(let tv of tvScreen) { %>
 
                                                             <div class="col-md-4 product-men mt-5">
                                                                 <div class="men-pro-item simpleCart_shelfItem">
                                                                     <div class="men-thumb-item text-center">
-                                                                        <img src="images/<%= tv.category %>/<%= tv.images[0] %>" alt="">
+                                                                        <img src="images/<%= tv.category %>/<%= tv.images[0] %>"
+                                                                            alt="">
 
                                                                         <div class="men-cart-pro">
                                                                             <div class="inner-men-cart-pro">
-                                                                                <a href="/product/<%= tv._id %>" class="link-product-add-cart">Quick View</a>
+                                                                                <a href="/product/<%= tv._id %>"
+                                                                                    class="link-product-add-cart">Quick
+                                                                                    View</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="item-info-product text-center border-top mt-4">
+                                                                    <div
+                                                                        class="item-info-product text-center border-top mt-4">
                                                                         <h4 class="pt-1">
                                                                             <a href="/product/<%= tv._id %>">
                                                                                 <%= tv.productName %>
@@ -203,29 +245,53 @@
                                                                         </h4>
                                                                         <div class="info-product-price my-2">
                                                                             <span class="item_price"> EGP
-													<%= tv.price - ( ( tv.price * tv.discount) / 100 )%> </span>
-                                                                            <del> <%= tv.price %> </del>
+                                                                                <%= tv.price - ( ( tv.price *
+                                                                                    tv.discount) / 100 ) %>
+                                                                            </span>
+                                                                            <del>
+                                                                                <%= tv.price %>
+                                                                            </del>
                                                                         </div>
-                                                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                                        <div
+                                                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                                                             <form action="#" method="post">
                                                                                 <fieldset>
-                                                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                                                    <input type="hidden" name="add" value="1" />
-                                                                                    <input type="hidden" name="business" value=" " />
-                                                                                    <input type="hidden" name="item_name" value="<%= tv.productName %>" />
-                                                                                    <input type="hidden" name="amount" value="<%= +tv.amount %>" />
-                                                                                    <input type="hidden" name="discount_amount" value="<%= +tv.discount %>" />
-                                                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                                                    <input type="hidden" name="return" value=" " />
-                                                                                    <input type="hidden" name="cancel_return" value=" " />
+                                                                                    <input type="hidden" name="cmd"
+                                                                                        value="_cart" />
+                                                                                    <input type="hidden" name="add"
+                                                                                        value="1" />
+                                                                                    <input type="hidden" name="business"
+                                                                                        value=" " />
+                                                                                    <input type="hidden"
+                                                                                        name="item_name"
+                                                                                        value="<%= tv.productName %>" />
+                                                                                    <input type="hidden" name="amount"
+                                                                                        value="<%= +tv.amount %>" />
+                                                                                    <input type="hidden"
+                                                                                        name="discount_amount"
+                                                                                        value="<%= +tv.discount %>" />
+                                                                                    <input type="hidden"
+                                                                                        name="currency_code"
+                                                                                        value="USD" />
+                                                                                    <input type="hidden" name="return"
+                                                                                        value=" " />
+                                                                                    <input type="hidden"
+                                                                                        name="cancel_return"
+                                                                                        value=" " />
                                                                                     <div class="some d-flex">
-                                                                                        <input type="submit" name="submit" value="Add to cart" class="button btn" />
+                                                                                        <input type="submit"
+                                                                                            name="submit"
+                                                                                            value="Add to cart"
+                                                                                            class="button btn" />
 
-                                                                                        <button class="btn btn-danger <%= isAdmin ? 'd-block' : 'd-none' %>"> 
-																	<a href="/product/delete/<%= tv._id %>">
-																		<i class="fa fa-trash"></i>
-																	</a>
-																</button>
+                                                                                        <button
+                                                                                            class="btn btn-danger <%= isAdmin ? 'd-block' : 'd-none' %>">
+                                                                                            <a
+                                                                                                href="/product/delete/<%= tv._id %>">
+                                                                                                <i
+                                                                                                    class="fa fa-trash"></i>
+                                                                                            </a>
+                                                                                        </button>
 
                                                                                     </div>
                                                                                 </fieldset>
@@ -235,8 +301,9 @@
                                                                 </div>
                                                             </div>
                                                             <% } %>
-                                                                <% } else {  %>
-                                                                    <div class="alert alert-danger text-center text-capitalize mt-4 w-100">
+                                                                <% } else { %>
+                                                                    <div
+                                                                        class="alert alert-danger text-center text-capitalize mt-4 w-100">
                                                                         there are not products yet
                                                                     </div>
                                                                     <% } %>
@@ -257,26 +324,31 @@
                                                         <img src="images/image1.png" alt="">
                                                     </div>
                                                 </div>
+
                                             </div>
                                             <!-- //third section -->
                                             <!-- fourth section -->
                                             <div class="houseapplince product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
                                                 <h3 class="heading-tittle text-center font-italic">Large Appliances</h3>
                                                 <div class="row">
-                                                    <% if(houseapplince.length > 0) {  %>
-                                                        <% for(let houseItem of houseapplince) {  %>
+                                                    <% if(houseapplince.length> 0) { %>
+                                                        <% for(let houseItem of houseapplince) { %>
                                                             <div class="col-md-4 product-men mt-5">
                                                                 <div class="men-pro-item simpleCart_shelfItem">
                                                                     <div class="men-thumb-item text-center">
-                                                                        <img src="images/<%= houseItem.category %>/<%= houseItem.images[0] %>" alt="">
+                                                                        <img src="images/<%= houseItem.category %>/<%= houseItem.images[0] %>"
+                                                                            alt="">
                                                                         <div class="men-cart-pro">
                                                                             <div class="inner-men-cart-pro">
-                                                                                <a href="/product/<%= houseItem._id %>" class="link-product-add-cart">Quick View</a>
+                                                                                <a href="/product/<%= houseItem._id %>"
+                                                                                    class="link-product-add-cart">Quick
+                                                                                    View</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <span class="product-new-top">New</span>
-                                                                    <div class="item-info-product text-center border-top mt-4">
+                                                                    <div
+                                                                        class="item-info-product text-center border-top mt-4">
                                                                         <h4 class="pt-1">
                                                                             <a href="/product/<%= houseItem._id %>">
                                                                                 <%= houseItem.productName %>
@@ -284,30 +356,54 @@
                                                                         </h4>
                                                                         <div class="info-product-price my-2">
                                                                             <span class="item_price"> EGP
-																				<%= +houseItem.price - ( ( +houseItem.price * +houseItem.discount) / 100 )%>
-																			</span>
-                                                                            <del> <%= houseItem.price  %> </del>
+                                                                                <%= +houseItem.price - ( (
+                                                                                    +houseItem.price *
+                                                                                    +houseItem.discount) / 100 )%>
+                                                                            </span>
+                                                                            <del>
+                                                                                <%= houseItem.price %>
+                                                                            </del>
                                                                         </div>
-                                                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                                                        <div
+                                                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                                                             <form action="#" method="post">
                                                                                 <fieldset>
-                                                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                                                    <input type="hidden" name="add" value="1" />
-                                                                                    <input type="hidden" name="business" value=" " />
-                                                                                    <input type="hidden" name="item_name" value="<%= houseItem.productName %>" />
-                                                                                    <input type="hidden" name="amount" value="<%= +houseItem.amount %>" />
-                                                                                    <input type="hidden" name="discount_amount" value="<%= +houseItem.discount %>" />
-                                                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                                                    <input type="hidden" name="return" value=" " />
-                                                                                    <input type="hidden" name="cancel_return" value=" " />
+                                                                                    <input type="hidden" name="cmd"
+                                                                                        value="_cart" />
+                                                                                    <input type="hidden" name="add"
+                                                                                        value="1" />
+                                                                                    <input type="hidden" name="business"
+                                                                                        value=" " />
+                                                                                    <input type="hidden"
+                                                                                        name="item_name"
+                                                                                        value="<%= houseItem.productName %>" />
+                                                                                    <input type="hidden" name="amount"
+                                                                                        value="<%= +houseItem.amount %>" />
+                                                                                    <input type="hidden"
+                                                                                        name="discount_amount"
+                                                                                        value="<%= +houseItem.discount %>" />
+                                                                                    <input type="hidden"
+                                                                                        name="currency_code"
+                                                                                        value="USD" />
+                                                                                    <input type="hidden" name="return"
+                                                                                        value=" " />
+                                                                                    <input type="hidden"
+                                                                                        name="cancel_return"
+                                                                                        value=" " />
                                                                                     <div class="some d-flex">
-                                                                                        <input type="submit" name="submit" value="Add to cart" class="button btn" />
+                                                                                        <input type="submit"
+                                                                                            name="submit"
+                                                                                            value="Add to cart"
+                                                                                            class="button btn" />
 
-                                                                                        <button class="btn btn-danger <%= isAdmin ? 'd-block' : 'd-none' %>"> 
-																	<a href="/product/delete/<%= houseItem._id %>">
-																		<i class="fa fa-trash"></i>
-																	</a>
-																</button>
+                                                                                        <button
+                                                                                            class="btn btn-danger <%= isAdmin ? 'd-block' : 'd-none' %>">
+                                                                                            <a
+                                                                                                href="/product/delete/<%= houseItem._id %>">
+                                                                                                <i
+                                                                                                    class="fa fa-trash"></i>
+                                                                                            </a>
+                                                                                        </button>
 
                                                                                     </div>
                                                                                 </fieldset>
@@ -318,8 +414,10 @@
                                                                 </div>
                                                             </div>
                                                             <% } %>
-                                                                <% } else {  %>
-                                                                    <div class="alert  alert-danger text-center text-capitalize w-100 mt-4"> there are not products yet </div>
+                                                                <% } else { %>
+                                                                    <div
+                                                                        class="alert  alert-danger text-center text-capitalize w-100 mt-4">
+                                                                        there are not products yet </div>
                                                                     <% } %>
 
 
@@ -329,7 +427,7 @@
                                         </div>
                                     </div>
                                     <!-- //product left -->
-                                    <% if(priceValue) {  %>
+                                    <% if(priceValue) { %>
                                         <input type="hidden" class="priceValue" value="<%= priceValue %>" />
                                         <% } %>
                                             <!-- product right -->
@@ -338,7 +436,8 @@
                                                     <div class="search-hotel border-bottom py-2">
                                                         <h3 class="agileits-sear-head mb-3">Search Here..</h3>
                                                         <form action="#" method="post">
-                                                            <input type="search" placeholder="Product name..." name="search" required="">
+                                                            <input type="search" placeholder="Product name..."
+                                                                name="search" required="">
                                                             <input type="submit" value="">
                                                         </form>
                                                     </div>
@@ -377,100 +476,110 @@
                                                         <ul class="discount">
                                                             <li>
                                                                 <div>
-                                                                    <input name="checkbox" data-discount="5" type="radio" class="checked">
+                                                                    <input name="checkbox" data-discount="5"
+                                                                        type="radio" class="checked">
                                                                     <span class="span">5% or less</span>
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div>
-                                                                    <input value="false" data-discount="10" type="radio" name="checkbox" class="checked">
+                                                                    <input value="false" data-discount="10" type="radio"
+                                                                        name="checkbox" class="checked">
                                                                     <span class="span">10% or less</span>
                                                                 </div>
                                                             </li>
                                                             <li>
-                                                                <input value="false" data-discount="20" name="checkbox" type="radio" class="checked">
+                                                                <input value="false" data-discount="20" name="checkbox"
+                                                                    type="radio" class="checked">
                                                                 <span class="span">20% or less</span>
                                                             </li>
                                                             <li>
-                                                                <input value="false" data-discount="30" name="checkbox" type="radio" class="checked">
+                                                                <input value="false" data-discount="30" name="checkbox"
+                                                                    type="radio" class="checked">
                                                                 <span class="span">30% or less</span>
                                                             </li>
                                                             <li>
-                                                                <input value="false" data-discount="50" name="checkbox" type="radio" class="radio">
-                                                                <span " class="span ">50% or less</span>
-								</li>
-								<li>
-									<input value="false " data-discount="60 " name="checkbox " type="radio " class="radio ">
-									<span class="span ">60% or less</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //discounts -->
-						<!-- reviews -->
-						<div class="customer-rev border-bottom left-side py-2 ">
-							<h3 class="agileits-sear-head mb-3 ">Customer Review</h3>
-							<ul>
-								<li>
-									<a href="# ">
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<span>5.0</span>
-									</a>
-								</li>
-								<li>
-									<a href="# ">
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<span>4.0</span>
-									</a>
-								</li>
-								<li>
-									<a href="# ">
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star-half "></i>
-										<span>3.5</span>
-									</a>
-								</li>
-								<li>
-									<a href="# ">
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<span>3.0</span>
-									</a>
-								</li>
-								<li>
-									<a href="# ">
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star "></i>
-										<i class="fas fa-star-half "></i>
-										<span>2.5</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<!-- //reviews -->
-						<!-- electronics -->
-						<div class="left-side border-bottom py-2 ">
-							<input type="hidden " class="objTypes " value="<%=J SON.stringify(types) %>"/>
+                                                                <input value="false" data-discount="50" name="checkbox"
+                                                                    type="radio" class="radio">
+                                                                <span class=" span ">50% or less</span>
+                                                            </li>
+                                                            <li>
+                                                                <input value=" false " data-discount=" 60 "
+                                                                    name=" checkbox " type=" radio " class=" radio ">
+                                                                <span class=" span ">60% or less</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- //discounts -->
+                                                    <!-- reviews -->
+                                                    <div class=" customer-rev border-bottom left-side py-2 ">
+                                                        <h3 class=" agileits-sear-head mb-3 ">Customer Review</h3>
+                                                        <ul>
+                                                            <li>
+                                                                <a href=" # ">
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <span>5.0</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href=" # ">
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <span>4.0</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href=" # ">
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star-half "></i>
+                                                                    <span>3.5</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href=" # ">
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <span>3.0</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href=" # ">
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star "></i>
+                                                                    <i class=" fas fa-star-half "></i>
+                                                                    <span>2.5</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- //reviews -->
+                                                    <!-- electronics -->
+                                                    <div class=" left-side border-bottom py-2 ">
+                                                        <input type=" hidden " class=" objTypes "
+                                                            value=" <%= JSON.stringify(types) %>" />
 
-                                                                <h3 class="agileits-sear-head mb-3"> category </h3>
-                                                                <ul class="types">
-                                                                    <% for(let type of types) {  %>
-                                                                        <li>
-                                                                            <input data-type="<%= type %>" value="false" type="checkbox" class="<%= type %>">
-                                                                            <span class="span"> <%= type %> </span>
-                                                                        </li>
-                                                                        <% } %>
+                                                        <h3 class="agileits-sear-head mb-3"> category </h3>
+                                                        <ul class="types">
+                                                            <% for(let type of types) { %>
+                                                                <li>
+                                                                    <input data-type="<%= type %>" value="false"
+                                                                        type="checkbox" class="<%= type %>">
+                                                                    <span class="span">
+                                                                        <%= type %>
+                                                                    </span>
+                                                                </li>
+                                                                <% } %>
 
-                                                                </ul>
+                                                        </ul>
                                                     </div>
                                                     <!-- //electronics -->
                                                     <!-- delivery -->
@@ -506,28 +615,34 @@
                                                             <div class="scroll">
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-sm-2 col-3 left-mar">
-                                                                        <img src="images/k1.jpg" alt="" class="img-fluid">
+                                                                        <img src="images/k1.jpg" alt=""
+                                                                            class="img-fluid">
                                                                     </div>
                                                                     <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
-                                                                        <a href="">Samsung Galaxy On7 Prime (Gold, 4GB RAM + 64GB Memory)</a>
+                                                                        <a href="">Samsung Galaxy On7 Prime (Gold, 4GB
+                                                                            RAM + 64GB Memory)</a>
                                                                         <a href="" class="price-mar mt-2">$12,990.00</a>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row my-4">
                                                                     <div class="col-lg-3 col-sm-2 col-3 left-mar">
-                                                                        <img src="images/k2.jpg" alt="" class="img-fluid">
+                                                                        <img src="images/k2.jpg" alt=""
+                                                                            class="img-fluid">
                                                                     </div>
                                                                     <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
-                                                                        <a href="">Haier 195 L 4 Star Direct-Cool Single Door Refrigerator</a>
+                                                                        <a href="">Haier 195 L 4 Star Direct-Cool Single
+                                                                            Door Refrigerator</a>
                                                                         <a href="" class="price-mar mt-2">$12,499.00</a>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-sm-2 col-3 left-mar">
-                                                                        <img src="images/k3.jpg" alt="" class="img-fluid">
+                                                                        <img src="images/k3.jpg" alt=""
+                                                                            class="img-fluid">
                                                                     </div>
                                                                     <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
-                                                                        <a href="">Ambrane 13000 mAh Power Bank (P-1310 Premium)</a>
+                                                                        <a href="">Ambrane 13000 mAh Power Bank (P-1310
+                                                                            Premium)</a>
                                                                         <a href="" class="price-mar mt-2">$1,199.00 </a>
                                                                     </div>
                                                                 </div>
@@ -591,13 +706,13 @@
 
                             <!-- nav smooth scroll -->
                             <script>
-                                $(document).ready(function() {
+                                $(document).ready(function () {
                                     $(".dropdown").hover(
-                                        function() {
+                                        function () {
                                             $('.dropdown-menu', this).stop(true, true).slideDown("fast");
                                             $(this).toggleClass('open');
                                         },
-                                        function() {
+                                        function () {
                                             $('.dropdown-menu', this).stop(true, true).slideUp("fast");
                                             $(this).toggleClass('open');
                                         }
@@ -609,7 +724,7 @@
                             <!-- popup modal (for location)-->
                             <script src="js/jquery.magnific-popup.js"></script>
                             <script>
-                                $(document).ready(function() {
+                                $(document).ready(function () {
                                     $('.popup-with-zoom-anim').magnificPopup({
                                         type: 'inline',
                                         fixedContentPos: false,
@@ -632,7 +747,7 @@
                                 paypals.minicarts
                                     .render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-                                paypals.minicarts.cart.on('checkout', function(evt) {
+                                paypals.minicarts.cart.on('checkout', function (evt) {
                                     var items = this.items(),
                                         len = items.length,
                                         total = 0,
@@ -653,7 +768,7 @@
 
                             <!-- password-script -->
                             <script>
-                                window.onload = function() {
+                                window.onload = function () {
                                     document.getElementById("password1").onchange = validatePassword;
                                     document.getElementById("password2").onchange = validatePassword;
                                 }
@@ -682,8 +797,8 @@
                             <script src="js/move-top.js"></script>
                             <script src="js/easing.js"></script>
                             <script>
-                                jQuery(document).ready(function($) {
-                                    $(".scroll").click(function(event) {
+                                jQuery(document).ready(function ($) {
+                                    $(".scroll").click(function (event) {
                                         event.preventDefault();
 
                                         $('html,body').animate({
@@ -696,7 +811,7 @@
 
                             <!-- smooth-scrolling-of-move-up -->
                             <script>
-                                $(document).ready(function() {
+                                $(document).ready(function () {
 
                                     $().UItoTop({
                                         easingType: 'easeOutQuart'
@@ -712,6 +827,7 @@
                             <!-- //js-files -->
                             <script src="/axios/dist/axios.min.js"></script>
                             <script src="js/customs.js"></script>
+
     </body>
 
 </html>

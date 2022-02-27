@@ -37,7 +37,7 @@ $("document").ready(function () {
 
     var filter = JSON.parse($(".param").val());
 
-    if(brand) {
+    if (brand) {
       filter.brand = brand
     }
 
@@ -47,7 +47,7 @@ $("document").ready(function () {
 
     axios.post("/api/filter-product", filter).then(result => {
       const products = result.data
-      if(products) {
+      if (products) {
         const firstSection = $(".first-section .row")
         const secondSection = $(".socend-section .row")
         const thirdSection = $(".third-section .row")
@@ -56,8 +56,8 @@ $("document").ready(function () {
         secondSection.html("")
         thirdSection.html("")
         fourSection.html("")
-        for(i=0; i < 3; i++) {
-            firstSection.append(`
+        for (i = 0; i < 3; i++) {
+          firstSection.append(`
             <div class="col-md-4 product-men">
               <div class="men-pro-item simpleCart_shelfItem">
                 <div class="men-thumb-item text-center">
@@ -77,7 +77,7 @@ $("document").ready(function () {
                   </h4>
                   <div class="info-product-price my-2">
                     <span class="item_price"> $
-                      ${products[i].price - ( (products[i].price * products[i].discount) / 100 )}
+                      ${products[i].price - ((products[i].price * products[i].discount) / 100)}
                     </span>
                     <del> ${products[i].price} </del>
                   </div>
@@ -114,6 +114,4 @@ $("document").ready(function () {
 
   }
 
-
-  console.log(paypals.minicarts.cart.items())
 });

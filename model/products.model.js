@@ -52,11 +52,11 @@ const productSchema = mongoose.Schema({
 })
 
 const product = mongoose.model("product", productSchema)
-const URL_DB = process.env.connectDB
+const URL_DB = process.env.ConnectDB
 
 exports.getProductById = (id) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.connectDB).then(() => {
+        mongoose.connect(process.env.ConnectDB).then(() => {
             return product.findById( {_id: id})
         }).then(result => {
             resolve(result)
@@ -81,7 +81,7 @@ exports.getProductsByFilter = (filter) => {
 // get types product of [ mobiles , computers ]
 exports.fetchProductsByCategory = (data) =>{
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.connectDB).then(() => {
+        mongoose.connect(URL_DB).then(() => {
             return product.find( data )
         }).then(products => {
             resolve(products)
@@ -91,7 +91,7 @@ exports.fetchProductsByCategory = (data) =>{
     })
 }
 
-// to make group for specfific
+// to make group for specfic
 exports.distinctBrandByCategory = ( category ) => {
     return new Promise((resolve, reject) => {
         mongoose.connect(URL_DB).then(() => {
@@ -123,7 +123,7 @@ exports.insertNewProduct = (data, imageObj) => {
             about: data.about,
             type: data.type
         })
-        mongoose.connect(process.env.connectDB).then(() => {
+        mongoose.connect(URL_DB).then(() => {
             return newProduct.save()
         }).then(result => {
             resolve(result)
@@ -136,7 +136,7 @@ exports.insertNewProduct = (data, imageObj) => {
 
 exports.deleteProductById = (id) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.connectDB, () => {
+        mongoose.connect(URL_DB, () => {
             return product.deleteOne({ _id: id })
         }).then(result => {
             resolve(result)

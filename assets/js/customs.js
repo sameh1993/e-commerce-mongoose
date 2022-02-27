@@ -1,10 +1,10 @@
-$("document").ready(function() {
+$("document").ready(function () {
 
 
     var discount = 0;
     var myTypes = []
 
-    $(".discount input").change(function() {
+    $(".discount input").change(function () {
         if ($(this).val() == true) {
             $(this).attr("value", false)
         }
@@ -14,7 +14,7 @@ $("document").ready(function() {
         fetchData()
     })
 
-    $(".types input").change(function() {
+    $(".types input").change(function () {
         const value = $(this).val() == 'true' ? false : true
         $(this).attr("value", value)
         console.log(value)
@@ -93,7 +93,7 @@ $("document").ready(function() {
                                         </h4>
                                         <div class="info-product-price my-2">
                                             <span class="item_price"> $
-                                                ${prod.price - ( ( prod.price * prod.discount) / 100 )}
+                                                ${prod.price - ((prod.price * prod.discount) / 100)}
                                             </span>
                                             <del> ${prod.price} </del>
                                         </div>
@@ -147,7 +147,7 @@ $("document").ready(function() {
                                         </h4>
                                         <div class="info-product-price my-2">
                                             <span class="item_price"> $
-                                                ${prod.price - ( ( prod.price * prod.discount) / 100 )}
+                                                ${prod.price - ((prod.price * prod.discount) / 100)}
                                             </span>
                                             <del> ${prod.price} </del>
                                         </div>
@@ -200,7 +200,7 @@ $("document").ready(function() {
                                         </h4>
                                         <div class="info-product-price my-2">
                                             <span class="item_price"> $
-                                                ${prod.price - ( ( prod.price * prod.discount) / 100 )}
+                                                ${prod.price - ((prod.price * prod.discount) / 100)}
                                             </span>
                                             <del> ${prod.price} </del>
                                         </div>
@@ -236,7 +236,7 @@ $("document").ready(function() {
     }
 
 
-    $(".confirmPass, .custom-control-input").change(function() {
+    $(".confirmPass, .custom-control-input").change(function () {
         const password = $(".password").val()
         const confirmPass = $(".confirmPass").val()
         const checked = $(".custom-control-input").val()
@@ -251,7 +251,7 @@ $("document").ready(function() {
 
 
     // registeration user
-    $("button.register").click(function(e) {
+    $("button.register").click(function (e) {
         e.preventDefault()
 
         const parent = $(this).parents(".form-register")
@@ -275,7 +275,7 @@ $("document").ready(function() {
     })
 
     // login user
-    $("button.login").click(function(e) {
+    $("button.login").click(function (e) {
         e.preventDefault()
         const parent = $(this).parents(".form-login")
         const data = {
@@ -290,8 +290,13 @@ $("document").ready(function() {
                 $(".register").hide()
                 $(".logout").show()
                 $("body").removeClass("modal-open")
+                // $(".links").append(`
+                // <li class="text-center text-white logout">
+                //         <i class="fas fa-sign-out-alt mr-2"></i> Log Out
+                // </li>
+                // `)
                 $(".modal").hide()
-                $(".message").addClass("alert-info").html("user is login").slideDown(700, function() {
+                $(".message").addClass("alert-info").html("user is login").slideDown(700, function () {
                     $(this).delay(4000).slideUp(500)
                 })
                 $(".d-none").addClass("d-block").removeClass("d-none")
@@ -303,7 +308,7 @@ $("document").ready(function() {
     })
 
 
-    $(".logout").click(function() {
+    $(".logout").click(function () {
         axios.get("/api/auth/logout").then(result => {
             console.log(result)
             if (result.data.err) {
@@ -320,7 +325,7 @@ $("document").ready(function() {
                                 <i class="fas fa-sign-out-alt mr-2"></i>Register </a>
                         </li>`)
                 $(".d-block").removeClass("d-block").addClass("d-none")
-                $(".message").addClass("alert-info").html("user is logout").slideDown(700, function() {
+                $(".message").addClass("alert-info").html("user is logout").slideDown(700, function () {
                     $(this).delay(4000).slideUp(500)
                 })
             }
@@ -333,7 +338,7 @@ $("document").ready(function() {
 
 
     // to delete slide of sliders
-    $(".carousel-inner .fa-trash").click(function() {
+    $(".carousel-inner .fa-trash").click(function () {
 
         var test = document.getElementById("slider").getAttribute("data-array") // test is now a valid js object
 
@@ -341,7 +346,7 @@ $("document").ready(function() {
 
         axios.get("/api/slider/delete/" + id).then(result => {
             if (result.data.deletedCount) {
-                const slider = JSON.parse(test).filter(function(item) { item._id != id })
+                const slider = JSON.parse(test).filter(function (item) { item._id != id })
                 console.log(slider)
                 slider.entries((index, element) => {
                     $(".carousel-indicators").html(
@@ -372,7 +377,7 @@ $("document").ready(function() {
 
     //******* / slider  **********/
     //**************************** */
-    $(".fa-trash").click(function() {
+    $(".fa-trash").click(function () {
         const sliderId = $(this).data("id")
 
         axios.get(`/api/slider/delete/${sliderId}`).then(result => {
@@ -381,16 +386,16 @@ $("document").ready(function() {
     })
 
     // add a new description
-    $(".body .btn-primary").click(function() {
+    $(".body .btn-primary").click(function () {
         $(this).parent(".parent-input").append("<input name='description'  placeholder='attribute: description' type='text' class='form-control mt-3'>")
     })
 
     // add a new description
-    $(".body .btn-primary").click(function() {
+    $(".body .btn-primary").click(function () {
         $(this).parent(".parent-about").append("<input name='about'  placeholder='attribute: description' type='text' class='form-control mt-3'>")
     })
 
-    $(".form-control.images").change(function(e) {
+    $(".form-control.images").change(function (e) {
         for (let item of e.target.files) {
             const url = URL.createObjectURL(item)
             $(".view-image").append(`<div class="img">
@@ -400,7 +405,7 @@ $("document").ready(function() {
         }
     })
 
-    $(".edit-product .view-image .img i").click(function() {
+    $(".edit-product .view-image .img i").click(function () {
         const url = $(this).siblings("img").attr('src')
         $(".parent-input").append(`<input type='hidden' value='${url}' name='removeImages'> `)
         $(this).parent(".img").remove();
@@ -410,16 +415,16 @@ $("document").ready(function() {
 
     let imagefile = {}
 
-    $(".fixed .content .image").change(function(e) {
+    $(".fixed .content .image").change(function (e) {
         imagefile = e.target.files[0]
         console.log(imagefile)
 
     })
 
-    $(".fixed > .fa").click(function() { $(this).parents(".fixed").fadeOut(500) })
-    $(".carousel .fa-plus").click(function() { $(".fixed").fadeIn(700) })
+    $(".fixed > .fa").click(function () { $(this).parents(".fixed").fadeOut(500) })
+    $(".carousel .fa-plus").click(function () { $(".fixed").fadeIn(700) })
 
-    $(".fixed .content .btn").click(function(e) {
+    $(".fixed .content .btn").click(function (e) {
         e.preventDefault()
         $(this).parents(".fixed").fadeOut(300)
         const parent = $(this).parent(".form")

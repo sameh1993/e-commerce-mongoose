@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
   isAdmin: {
     type: Number,
     default: 0,
-  },
+  }
 });
 
 const User = mongoose.model("User", userSchema);
@@ -29,7 +29,7 @@ const User = mongoose.model("User", userSchema);
 exports.signUp = (data) => {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect(process.env.connectDB)
+      .connect(process.env.ConnectDB)
       .then(() => {
         return User.findOne({ email: data.email });
       })
@@ -74,11 +74,11 @@ exports.loginUser = (data) => {
           reject("there is not found");
         } else {
           bcrypt.compare(data.password, user[0].password, function (err, result) {
-            if(!err) {
-                mongoose.disconnect()
-                resolve(user)
+            if (!err) {
+              mongoose.disconnect()
+              resolve(user)
             } else {
-                console.log(err)
+              console.log(err)
             }
           });
         }
