@@ -4,6 +4,7 @@ const fs = require("fs")
 
 
 exports.getSearchForProducts = (req, res, next) => {
+
     productsModel.searchOnAllProducts().then(result => {
         productsModel.distinctBrandByCategory(result[0].category).then(brands => {
             if(["mobiles", "computers"].indexOf(result[0].category) > -1) {

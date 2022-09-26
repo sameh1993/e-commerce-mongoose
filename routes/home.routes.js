@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const homeController = require("../controller/home.controller")
+const ProductController = require("../controller/products.controller")
 const bodyParser = require("body-parser")
 const multer = require("multer")
 
@@ -11,6 +12,9 @@ router.get("/price/:id", bodyParser.urlencoded({ extended: true }), homeControll
 router.post('/api/filter-product', bodyParser.json(), homeController.updateProductByFilter)
 
 router.get("/contactUs", homeController.getContactUsPage)
+
+router.get("/search", ProductController.getSearchForProducts)
+
 
 
 const storage = multer.diskStorage({
@@ -32,6 +36,9 @@ const { postAddNewSlide, deleteSlider } = require("../controller/slider.controll
 router.post("/api/slider/add", multer({ storage: storage }).single("image"), postAddNewSlide)
 
 router.get("/api/slider/delete/:id", deleteSlider)
+
+
+
 
 
 
