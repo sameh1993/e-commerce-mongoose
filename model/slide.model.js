@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 require("dotenv").config()
-const url_DB = process.env.connectDB
+const url_DB = process.env.ConnectDB
 
 const sliderSchema = new mongoose.Schema({
     image: {

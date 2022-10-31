@@ -1,5 +1,5 @@
 
-const { signUp, loginUser} = require("../model/auth.model")
+const { signUp, loginUser } = require("../model/auth.model")
 
 exports.postAddNewUser = (req, res) => {
     signUp(req.body).then(result => {
@@ -17,19 +17,19 @@ exports.postLogin = (req, res) => {
         req.session.userid = user[0]._id
         req.session.isAdmin = user[0].isAdmin
         res.json({
-            id : user[0]._id,
+            id: user[0]._id,
             isAdmin: user[0].isAdmin
         })
     }).catch(err => {
         res.json({
-            err : err
+            err: err
         })
     })
 }
 
 
 exports.getLogout = (req, res) => {
-    req.session.destroy(function() {
+    req.session.destroy(function () {
         res.json({ msg: "login" })
     })
 }

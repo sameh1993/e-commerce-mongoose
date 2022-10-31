@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
 $("document").ready(function () {
 
 
@@ -8,7 +11,10 @@ $("document").ready(function () {
     var myTypes = []
 
     $(".discount input").change(function () {
+<<<<<<< HEAD
+=======
 
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
         if ($(this).val() == true) {
             $(this).attr("value", false)
         }
@@ -284,7 +290,11 @@ $("document").ready(function () {
     var isAuth = $(".isAuth")
 
     // login user
+<<<<<<< HEAD
+    $("button.login").click(function (e) {
+=======
     $("button.login").on("click", function (e) {
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
         e.preventDefault()
         const parent = $(this).parents(".form-login")
         const data = {
@@ -297,6 +307,17 @@ $("document").ready(function () {
                 $(".modal .alert-danger.login").html(result.data.err).slideDown(300)
             } else {
                 $(".register").hide()
+<<<<<<< HEAD
+                $(".logout").show()
+                $("body").removeClass("modal-open")
+                // $(".links").append(`
+                // <li class="text-center text-white logout">
+                //         <i class="fas fa-sign-out-alt mr-2"></i> Log Out
+                // </li>
+                // `)
+                $(".modal").hide()
+                $(".message").addClass("alert-info").html("user is login").slideDown(700, function () {
+=======
                 $(".links").append(`
                     <li class="text-center text-white logout">
                         <i class="fas fa-sign-out-alt mr-2"></i> Log Out
@@ -304,6 +325,7 @@ $("document").ready(function () {
                 `)
                 $(".modal").hide()
                 $(".message").addClass("alert-info").html("user is logged").slideDown(700, function () {
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
                     $(this).delay(4000).slideUp(500)
                 })
                 $(".d-none").addClass("d-block").removeClass("d-none")
@@ -322,7 +344,11 @@ $("document").ready(function () {
         console.log("sameh")
     })
 
+<<<<<<< HEAD
+    $(".logout").click(function () {
+=======
     $(document).on("click", ".logout", function () {
+>>>>>>> ee7e3b589aa217cbd61362237d94ffa3d16d37b2
         axios.get("/api/auth/logout").then(result => {
             if (result.data.err) {
                 $(".message").html(result.data.err).addClass("alert-danger")

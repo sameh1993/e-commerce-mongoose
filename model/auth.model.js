@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -49,7 +49,7 @@ exports.User = User
 exports.signUp = (data) => {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect(process.env.connectDB)
+      .connect(process.env.ConnectDB)
       .then(() => {
         return User.findOne({ email: data.email });
       })
@@ -93,11 +93,11 @@ exports.loginUser = (data) => {
           reject("there is not found");
         } else {
           bcrypt.compare(data.password, user[0].password, function (err, result) {
-            if(!err) {
-                mongoose.disconnect()
-                resolve(user)
+            if (!err) {
+              mongoose.disconnect()
+              resolve(user)
             } else {
-                console.log(err)
+              console.log(err)
             }
           });
         }
@@ -109,17 +109,19 @@ exports.loginUser = (data) => {
 
 exports.updateDataUser = (userid, data) => {
   console.log(data)
-   try {  
-      const updateDataUser = User.updateOne({_id: userid}, { $set: { 
-          phoneNo: data.phoneNo,
-          address: {
-            street: data.street,
-            landmark: data.landmark,
-            addressType: data.addressType
-          }
-       }})
-       return updateDataUser
-   } catch(err) {
-     console.log(err)
-   }
+  try {
+    const updateDataUser = User.updateOne({ _id: userid }, {
+      $set: {
+        phoneNo: data.phoneNo,
+        address: {
+          street: data.street,
+          landmark: data.landmark,
+          addressType: data.addressType
+        }
+      }
+    })
+    return updateDataUser
+  } catch (err) {
+    console.log(err)
+  }
 }

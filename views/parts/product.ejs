@@ -18,7 +18,11 @@
             </h4>
             <div class="info-product-price my-2">
                 <span class="item_price"> $
+<<<<<<< HEAD
                     <%= (prod.price - ( ( prod.price * prod.discount) / 100 )).toFixed(2) %>
+=======
+                    <%= prod.price - ( ( prod.price * prod.discount) / 100 ) %>
+>>>>>>> d66511b8bc9abd6be60f83c909fd65efbc4457ed
                 </span>
                 <del> <%= prod.price.toFixed(2) %> </del>
             </div>

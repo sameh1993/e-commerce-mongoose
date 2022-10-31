@@ -85,7 +85,7 @@ const URL_DB = process.env.connectDB
 
 exports.getProductById = (id) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(URL_DB).then(() => {
+        mongoose.connect(process.env.ConnectDB).then(() => {
             return product.findById({ _id: id })
         }).then(result => {
             resolve(result)

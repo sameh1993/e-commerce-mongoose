@@ -49,15 +49,13 @@ exports.getHomepage = (req, res) => {
                         });
 
                     });
+
                 });
             });
-
-        })
-        .catch((err) => {
-            console.log(err);
         });
 
-};
+    };
+
 
 // apis for home page [ Filter by price ]
 
