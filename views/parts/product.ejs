@@ -18,9 +18,9 @@
             </h4>
             <div class="info-product-price my-2">
                 <span class="item_price"> $
-                    <%= prod.price - ( ( prod.price * prod.discount) / 100 )%>
+                    <%= (prod.price - ( ( prod.price * prod.discount) / 100 )).toFixed(2) %>
                 </span>
-                <del> <%= prod.price %> </del>
+                <del> <%= prod.price.toFixed(2) %> </del>
             </div>
             <div
                 class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">

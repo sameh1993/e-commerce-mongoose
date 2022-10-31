@@ -2,7 +2,7 @@
     <div class="men-pro-item simpleCart_shelfItem">
         <div class="men-thumb-item text-center">
             <% let imgObj=prod.images %>
-            <img src="/images/<%= prod.category %>/<%= imgObj[0] %>" alt="">
+            <img src="/images/<%= prod.department %>/<%= imgObj[0] %>" alt="">
             <div class="men-cart-pro">
                 <div class="inner-men-cart-pro">
                     <a href="/product/<%= prod._id %>"
@@ -19,7 +19,7 @@
             <div class="info-product-price my-2">
                 <% if(prod.discount) {  %>
                 <span class="item_price"> EGP
-                    <%= prod.price - ( ( prod.price * prod.discount) / 100 )%>
+                    <%= (prod.price - ( ( prod.price * prod.discount) / 100 )).toFixed(2) %>
                 </span>
                 <del>
                     <%= prod.price %>
@@ -31,10 +31,9 @@
             </div>
             <div
                 class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                <form class="form-data">
+                <!-- <form class="form-data">
                     <fieldset>
                         <input type="hidden" name="business" value=" " />
-                        <input type="hidden" class="category" name="category" value="<%= prod.category %>" />
                         <input type="hidden" class="image" name="image"
                             value="<%= prod.images[0] %>" />
                         <input type="hidden" class="id" name="id" value="<%= prod._id %>" />
@@ -49,6 +48,26 @@
                             <input type="button" class="add-cart btn btn-primary mt-0" name="submit" value="Add to cart"
                                 class="button btn" />
                         </div>
+                    </fieldset>
+                </form> -->
+                <form action="#" method="post">
+                    <fieldset>
+                        <input type="hidden" name="cmd" value="_cart" />
+                        <input type="hidden" name="add" value="1" />
+                        <input type="hidden" name="business" value=" " />
+                        <input type="hidden" class="productName" name="item_name"
+                            value="<%= prod.productName %>" />
+                        <input type="hidden" name="amount" value="200.00" />
+                        <input type="hidden" class="image" name="image"
+                        value="<%= prod.images[0] %>" />
+                            <input type="hidden" class="discount" name="discount_amount"
+                            value="<%= (+prod.discount * +prod.price) / 100 %>" />
+                        <input type="hidden" name="discount_amount" value="1.00" />
+                        <input type="hidden" name="department" value="<%= prod.department %>" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <input type="hidden" name="return" value=" " />
+                        <input type="hidden" name="cancel_return" value=" " />
+                        <input type="submit" name="submit" value="Add to cart" class="button btn" />
                     </fieldset>
                 </form>
             </div>

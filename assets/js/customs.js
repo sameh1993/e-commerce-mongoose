@@ -19,6 +19,7 @@ $("document").ready(function () {
     })
 
     $(".types input").change(function () {
+        // return console.log($(this).val())
         const value = $(this).val() == 'true' ? false : true
         $(this).attr("value", value)
         console.log(value)
@@ -34,9 +35,9 @@ $("document").ready(function () {
 
     function fetchData() {
 
-        const filterMobiles = { category: 'mobiles' }
-        const filterTvScreen = { category: 'tv, screen' }
-        const filterHousehold = { category: 'household appliance' }
+        const filterMobiles = { category: 'mobiles & accessories' }
+        const filterTvScreen = { category: 'tv & screen' }
+        const filterHousehold = { category: 'large appliances' }
         let price = JSON.parse($(".url").val())
 
         if (discount > 0) {
@@ -347,8 +348,6 @@ $("document").ready(function () {
         })
     })
 
-    console.log(typeof isAuth, isAuth.val())
-
     $(".w3view-cart, .w3view-cart i").click(function () {
         console.log(isAuth.val())
         if (isAuth.val()) {
@@ -410,13 +409,25 @@ $("document").ready(function () {
     })
 
     // add a new description
-    $(".body .btn-primary").click(function () {
-        $(this).parent(".parent-input").append("<input name='description'  placeholder='attribute: description' type='text' class='form-control mt-3'>")
+    $(".description .describe").click(function () {
+        $(this).parent(".details").find(".parent-about").append(`<div class="about">
+        <input placeholder="enter description" name="description" type="text"
+            class="form-control" />
+        <i class="fa fa-times"></i>
+    </div>`)
     })
 
     // add a new description
-    $(".body .btn-primary").click(function () {
-        $(this).parent(".parent-about").append("<input name='about'  placeholder='attribute: description' type='text' class='form-control mt-3'>")
+    $(".about .describe").click(function () {
+        $(this).parent(".details").find(".parent-about").append(`<div class="about">
+            <input placeholder="enter information" name="about" type="text"
+            class="form-control" />
+            <i class="fa fa-times"></i>
+        </div>`)
+    })
+
+    $("body").on("click", ".about .fa-times",function () {
+        $(this).parent().remove()
     })
 
     $(".form-control.images").change(function (e) {
@@ -495,8 +506,6 @@ $("document").ready(function () {
     // add a new product to cart
     $(".add-cart").click(function () {
 
-        console.log("sameh")
-
         const parent = $(this).parents(".form-data")
         const data = { "discount_amount": +parent.find(".discount").val(), "item_name": parent.find(".productName").val(), "amount": +parent.find(".amount").val(), "currency_code": "EGP" }
         paypals.minicarts.cart.add(data)
@@ -520,9 +529,15 @@ $("document").ready(function () {
             landmark: parent.find(".landmark").val(),
             addressType: parent.find(".addressType").val()
         }
-
-        console.log(data)
     })
 
+    $(".prevPage").click(function () {
+        console.log("prev page")
+        $(".currentPage").prev().find('form').submit()
+    })
 
+    $(".nextPage").click(function () {
+        console.log("prev page")
+        $(".currentPage").next().find('form').submit()
+    })
 })

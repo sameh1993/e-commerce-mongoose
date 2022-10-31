@@ -14,6 +14,7 @@ const app = express()
 app.use(express.static(path.join(__dirname, "assets")))
 app.use(express.static(path.join(__dirname, "node_modules")))
 app.use(express.static(path.join(__dirname, "views")))
+app.use(express.static("assets"))
 app.set("view engine", 'ejs')
 
 var store = new MongoDBStore({
@@ -41,31 +42,13 @@ app.use("/about", aboutRoutes)
 const authRoutes = require("./routes/auth.routes")
 app.use("/api/auth/", authRoutes)
 
-// const cartRoutes = require("./routes/cart.route.js")
-// app.get("/cart", cartRoutes)
-
 const productsRoutes = require("./routes/products.route");
 app.use("/product", productsRoutes)
 
-// const braintree = require("braintree")
-
-// var gateway = new braintree.BraintreeGateway({
-//     environment: braintree.Environment.Sandbox,
-//     merchantId: process.env.BRAINTREE_MERCHANT_ID,
-//     publicKey: process.env.BRAINTREE_PUBLIC_KRY,
-//     privateKey: process.env.BRAINTREE_PRIVATE_KEY
-// });
-
-// app.use = (req, res) => {
-//     // return console.log(req.body)
-//     gateway.clientToken.generate({}).then(response => {
-//         const clientToken = response.clientToken
-//         console.log(clientToken)
-//     });
-// }
-
-const BraintreeApiRoutes = require("./routes/braintree.route")
+const BraintreeApiRoutes = require("./routes/braintree.route");
 app.use("/api/braintree", BraintreeApiRoutes)
+
+
 
 const port = process.env.PORT
 

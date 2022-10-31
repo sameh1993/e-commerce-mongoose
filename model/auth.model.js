@@ -44,6 +44,8 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+exports.User = User
+
 exports.signUp = (data) => {
   return new Promise((resolve, reject) => {
     mongoose
@@ -53,7 +55,6 @@ exports.signUp = (data) => {
       })
       .then((user) => {
         if (user) {
-          console.log(user);
           mongoose.disconnect();
           reject("this email is exising");
         } else {
@@ -87,7 +88,6 @@ exports.loginUser = (data) => {
         return User.find({ email: data.email });
       })
       .then((user) => {
-        // return console.log(user)
         if (user.length <= 0) {
           mongoose.disconnect();
           reject("there is not found");

@@ -1,7 +1,142 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<%- include("parts/head") %>
+<head>
+
+	<%- include("parts/head") %>
+
+		<link rel="stylesheet" href="/css/filter_multi_select.css" />
+		<style>
+			.about {
+				position: relative;
+				margin-bottom: 15px;
+			}
+
+			.about i {
+				position: absolute;
+				right: 15px;
+				color: #bdbdbd;
+				top: 50%;
+				transform: translatey(-50%);
+			}
+
+
+
+			.multi-select {
+				position: relative;
+			}
+
+			.multi-select:hover .options {
+				opacity: 1;
+				display: block;
+				user-select: none;
+				font-size: 14px;
+			}
+
+			.multi-select .options {
+				position: absolute;
+				z-index: 20;
+				background-color: #fff;
+				right: 0;
+				left: 0;
+				top: 100%;
+				opacity: 0;
+				transition: all .4s ease-in-out;
+				display: none;
+				text-transform: capitalize;
+				border: 1px solid #f9f9f9;
+				box-shadow: 0 0 3px 1px #efefef;
+			}
+
+			.multi-select .options li {
+				padding: 7px 14px;
+			}
+
+			.multi-select .options li:hover,
+			.multi-select .options li.active {
+				background-color: #efefef;
+			}
+
+			.multi-select .options i {
+				margin-right: 8px;
+			}
+
+			.multi-select .options i.fa-check-square {
+				color: #f45c5d;
+			}
+
+			.multi-select .view {
+				border: 1px solid #d1d1d1;
+				padding: 8px 13px;
+				min-height: 36px;
+				color:#495057
+			}
+
+			.multi-select .view span {
+				position: relative;
+				padding-right: 15px;
+				position: relative;
+				font-size: 12px;
+				background-color: var(--mainColor);
+				color: #fff;
+				user-select: none;
+				border-radius: 4px;
+				padding: 5px 20px 5px 5px;
+				margin-right: 7px;
+				margin-bottom: 8px;
+				transition: all .4s ease-in-out;
+			}
+
+			.hidden {
+				display: none;
+				opacity: 0;
+			}
+
+			.multi-select .view span i {
+				position: absolute;
+				right: 8px;
+				top: 50%;
+				transform: translatey(-50%);
+			}
+
+			::placeholder {
+				font-size: 13px;
+				text-transform: capitalize;
+			}
+
+			select {
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-o-appearance: none;
+			}
+
+			.fa-angle-down {
+				position: absolute;
+				right: 30px;
+				top: 50%;
+				transform: translatey(-50%);
+				color:#555;
+			}
+
+
+			@media (max-width: 767px) {
+				#languages .dropdown-menu {
+					width: 100% !important;
+				}
+			}
+
+			@media (min-width: 768px) {
+				.form {
+					width: 52%;
+					margin: auto;
+					padding: 20px 25px 35px;
+					border: 1px solid #d6d6d6;
+					border-radius: 16px;
+
+				}
+			}
+		</style>
+</head>
 
 <body>
 
@@ -32,9 +167,11 @@
 							<input type="submit" class="form-control" value="Log in">
 						</div>
 						<div class="sub-w3l">
-							<div class="custom-control custom-checkbox mr-sm-2">
-								<input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-								<label class="custom-control-label" for="customControlAutosizing">Remember me?</label>
+							<div class="custom-control custom-checkbox  value=" 1" mr-sm-2">
+								<input type="checkbox" value="1" class="custom-control-input"
+									id="ceustomControlAutosizing">
+								<label class="custom-control-label" for="ceustomControlAutosizing">Remember
+									me?</label>
 							</div>
 						</div>
 						<p class="text-center dont-do mt-3">Don't have an account?
@@ -68,21 +205,22 @@
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Password</label>
-							<input type="password" class="form-control" placeholder=" " name="Password" id="password1"
-								required="">
+							<input type="password" class="form-control" placeholder=" " name="Password" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Confirm Password</label>
 							<input type="password" class="form-control" placeholder=" " name="Confirm Password"
-								id="password2" required="">
+								required="">
 						</div>
 						<div class="right-w3l">
 							<input type="submit" class="form-control" value="Register">
 						</div>
 						<div class="sub-w3l">
-							<div class="custom-control custom-checkbox mr-sm-2">
-								<input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
-								<label class="custom-control-label" for="customControlAutosizing2">I Accept to the Terms
+							<div class="custom-control custom-checkbox  value=" 1" mr-sm-2">
+								<input type="checkbox" value="1" class="custom-control-input"
+									id="scustomControlAutosizing2">
+								<label class="custom-control-label" for="scustomControlAutosizing2">I Accept to the
+									Terms
 									& Conditions</label>
 							</div>
 						</div>
@@ -94,360 +232,421 @@
 	<!-- //modal -->
 
 	<%- include("parts/top-header") %>
-	<!-- //header-bottom -->
+		<!-- //header-bottom -->
 
-	<!-- navigation -->
-	<%- include("parts/navbar") %>
-	<!-- //navigation -->
+		<!-- navigation -->
+		<%- include("parts/navbar") %>
+			<!-- //navigation -->
 
-	<!-- banner-2 -->
-	<div class="page-head_agile_info_w3l">
+			<!-- banner-2 -->
+			<div class="page-head_agile_info_w3l">
 
-	</div>
-	<!-- //banner-2 -->
-	<!-- page -->
-	<div class="services-breadcrumb">
-		<div class="agile_inner_breadcrumb">
-			<div class="container">
-				<ul class="w3_short">
-					<li>
-						<a href="index.html">Home</a>
-						<i>|</i>
-					</li>
-					<li> Add A new Product </li>
-				</ul>
 			</div>
-		</div>
-	</div>
-	<!-- //page -->
-
-	<!-- Single Page -->
-	<div class="ads-grid add-product py-sm-5 py-4">
-		<div class="head">
-			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3"> <span>N</span>ew <span>P</span>roduct </h3>
-		</div>
-
-		<div class="body">
-			<div class="container">
-				<form class="form" method="POST" action="/product/add" enctype="multipart/form-data" >
-
-					<div class="item">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> product name : </label>
-							<div class="col-md-9">
-								<input name="productName" placeholder="enter product name" type="text" class="form-control" />
-							</div>
-						</div>
+			<!-- //banner-2 -->
+			<!-- page -->
+			<div class="services-breadcrumb">
+				<div class="agile_inner_breadcrumb">
+					<div class="container">
+						<ul class="w3_short">
+							<li>
+								<a href="index.html">Home</a>
+								<i>|</i>
+							</li>
+							<li> Add A new Product </li>
+						</ul>
 					</div>
-
-					<div class="item">
-						
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> category : </label>
-							<div class="col-md-9 parent-input">
-								<select class="form-control" name="category">
-									<option selected> choose category </option>
-									<option value="headphones">Headphones</option>
-									<option value="computers">Computers</option>
-									<option value="appliances">Appliances</option>
-									<option value="household appliance">household appliance</option>
-									<option value="mobiles">Mobiles</option>
-									<option value="tv, screen">Tv, Screen</option>
-									<option value="iPad, tablets">iPad &amp; Tablets</option>
-									<option value="cameras, camcorders">Cameras &amp; Camcorders</option>
-									<option value="home audio, theater">Home Audio &amp; Theater</option>
-								</select>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="item details">
-						
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> description : </label>
-							<div class="col-md-9 parent-input">
-								<input placeholder="attribute : description" name="description" type="text" class="form-control" />
-
-								<button type="button" class="btn btn-primary mt-2" > new describe </button>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="item mt-2">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> Upload images : </label>
-							<div class="col-md-9 parent-input">
-								<input name="images" type="file" multiple accept="image/*" class="form-control" placeholder="select multi images"/>
-							</div>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> price : </label>
-							<div class="col-md-9">
-								<input name="price" placeholder="enter price" type="number" class="form-control" />
-							</div>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> amount : </label>
-							<div class="col-md-9">
-								<input name="amount" placeholder="enter amount" type="text" class="form-control" />
-							</div>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> discount : </label>
-							<div class="col-md-9">
-								<input name="discount" placeholder="enter discount" type="text" class="form-control" />
-							</div>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> type : </label>
-							<div class="col-md-9">
-								<input name="type" placeholder="enter type" type="text" class="form-control" />
-							</div>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> brand : </label>
-							<div class="col-md-9">
-								<input name="brand" placeholder="enter brand" type="text" class="form-control" />
-							</div>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> warranty : </label>
-							<div class="col-md-9">
-								<input name="warranty" placeholder="enter warranty" type="text" class="form-control" />
-							</div>
-						</div>
-					</div>
-
-					<div class="item details">
-						
-						<div class="row">
-							<label class="col-md-3 text-capitalize"> about product : </label>
-							<div class="col-md-9 parent-about">
-								<input placeholder="enter information detials" name="about" type="text" class="form-control" />
-
-								<button type="button" class="btn btn-primary mt-2" > new describe </button>
-							</div>
-						</div>
-
-					</div>
-
-					<button class="btn btn-primary mr-auto ml-auto sendBtn" type="submit"> send </button>
-				</form>
+				</div>
 			</div>
-		</div>
-	</div>
-	<!-- //Single Page -->
+			<!-- //page -->
 
-	<!-- middle section -->
-	<div class="join-w3l1 py-sm-5 py-4">
-		<div class="container py-xl-4 py-lg-2">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="join-agile text-left p-4">
-						<div class="row">
-							<div class="col-sm-7 offer-name">
-								<h6>Smooth, Rich & Loud Audio</h6>
-								<h4 class="mt-2 mb-3">Branded Headphones</h4>
-								<p>Sale up to 25% off all in store</p>
+			<!-- Single Page -->
+			<div class="ads-grid add-product py-sm-5 py-4">
+				<div class="head">
+					<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3"> <span>N</span>ew <span>P</span>roduct
+					</h3>
+				</div>
+
+				<div class="body">
+					<div class="container">
+						<form class="form" method="POST" action="/product/add" enctype="multipart/form-data">
+
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> product name : </label>
+									<div class="col-md-12">
+										<input name="productName" placeholder="enter product name" type="text"
+											class="form-control" />
+									</div>
+								</div>
 							</div>
-							<div class="col-sm-5 offerimg-w3l">
-								<img src="/images/off1.png" alt="" class="img-fluid">
+
+							<input type="hidden" class="departs" value="<%= JSON.stringify(departs) %>" />
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> deparemtment : </label>
+									<div class="col-md-12 parent-input">
+										<i class="fas fa-angle-down"></i>
+										<select class="form-control department" name="department">
+											<option selected> choose deparemtment </option>
+											<% for(let item of departs) { %>
+												<option value="<%= item.name %>">
+													<%= item.name %>
+												</option>
+												<% } %>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="item">
+								<label class="col-md-12 text-capitalize text-left"> category : </label>
+								<div class="multi-select">
+									<input class="form-control category" name="category" type="hidden"
+										placeholder="select category" />
+									<div class="view bg-white">
+										No Items Selected...
+									</div>
+									<ul class="list-unstyled options">
+										<!-- <li> <i data-value="sameh" class="far fa-square"></i> sameh </li>
+										<li> <i data-value="heba" class="far fa-square"></i> ahmed</li>
+										<li> <i data-value="mohamed" class="far fa-square"></i> heba </li> -->
+									</ul>
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> type : </label>
+									<div class="col-md-12 parent-input">
+										<i class="fas fa-angle-down"></i>
+										<select class="form-control type" name="type">
+											<option selected> Select type </option>
+										</select>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="item details description">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> description : </label>
+									<div class="col-md-12 parent-about">
+										<div class="about">
+											<input placeholder="enter description" name="description" type="text"
+												class="form-control" />
+											<i class="fa fa-times"></i>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn describe btn-primary"> new describe
+								</button>
+							</div>
+
+							<div class="item">
+
+								<div class="">
+									<input checked  type="radio" value="false" name="accessory" /> not accessory
+									<input class="ml-4" type="radio" value="true" name="accessory" /> accessory
+								</div>
+							</div>
+
+
+							<div class="item mt-2">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> Upload images : </label>
+									<div class="col-md-12 parent-input">
+										<input name="images" type="file" multiple accept="image/*" class="form-control"
+											placeholder="select multi images" />
+									</div>
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> price : </label>
+									<div class="col-md-12">
+										<input name="price" placeholder="enter price" type="text"
+											class="form-control" />
+									</div>
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> amount : </label>
+									<div class="col-md-12">
+										<input name="amount" placeholder="enter amount" type="text"
+											class="form-control" />
+									</div>
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> discount : </label>
+									<div class="col-md-12">
+										<input name="discount" placeholder="enter discount" type="text"
+											class="form-control" />
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="item">
+									<div class="row">
+										<label class="col-md-12 text-capitalize text-left"> type : </label>
+										<div class="col-md-12 parent-input">
+											<select class="form-control" name="category">
+												<optgroup label="mobiles & accessories">
+													<option value="mobile & accessories"> mobile </option>
+													<option value="computers & accessories"> covers </option>
+												</optgroup>
+												<optgroup label="computers & accessories">
+													<option value="desktop"> desktop device </option>
+													<option value="labtop"> laptop </option>
+													<option value="access&printer"> printer </option>
+													<option value="access&screen"> screen </option>
+													<option value="access&keyboard"> keyboard </option>
+													<option value="access&mouse"> mouse </option>
+												</optgroup>
+												<optgroup label="tablets & iphones">
+													<option value="tablet"> tablet device </option>
+													<option value="iphone"> apple device </option>
+												</optgroup>
+											</select>
+										</div>
+									</div>
+
+								</div> -->
+
+
+
+
+
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> brand : </label>
+									<div class="col-md-12">
+										<input name="brand" placeholder="enter brand" type="text"
+											class="form-control" />
+									</div>
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> warranty : </label>
+									<div class="col-md-12">
+										<input name="warranty" placeholder="enter warranty" type="text"
+											class="form-control" />
+									</div>
+								</div>
+							</div>
+
+							<div class="item details about">
+								<div class="row">
+									<label class="col-md-12 text-capitalize text-left"> about product : </label>
+									<div class="col-md-12 parent-about">
+										<div class="about">
+											<input placeholder="enter information" name="about" type="text"
+												class="form-control" />
+											<i class="fa fa-times"></i>
+										</div>
+										</button>
+									</div>
+								</div>
+								<button type="button" class="btn describe btn-primary"> new describe
+
+							</div>
+
+							<button class="btn btn-primary mr-auto ml-auto sendBtn" type="submit"> send </button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- //Single Page -->
+
+			<!-- middle section -->
+			<div class="join-w3l1 py-sm-5 py-4">
+				<div class="container py-xl-4 py-lg-2">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="join-agile text-left p-4">
+								<div class="row">
+									<div class="col-sm-7 offer-name">
+										<h6>Smooth, Rich & Loud Audio</h6>
+										<h4 class="mt-2 mb-3">Branded Headphones</h4>
+										<p>Sale up to 25% off all in store</p>
+									</div>
+									<div class="col-sm-5 offerimg-w3l">
+										<img src="/images/off1.png" alt="" class="img-fluid">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 mt-lg-0 mt-5">
+							<div class="join-agile text-left p-4">
+								<div class="row ">
+									<div class="col-sm-7 offer-name">
+										<h6>A Bigger Phone</h6>
+										<h4 class="mt-2 mb-3">Smart Phones 5</h4>
+										<p>Free shipping order over $100</p>
+									</div>
+									<div class="col-sm-5 offerimg-w3l">
+										<img src="/images/off2.png" alt="" class="img-fluid">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6 mt-lg-0 mt-5">
-					<div class="join-agile text-left p-4">
-						<div class="row ">
-							<div class="col-sm-7 offer-name">
-								<h6>A Bigger Phone</h6>
-								<h4 class="mt-2 mb-3">Smart Phones 5</h4>
-								<p>Free shipping order over $100</p>
-							</div>
-							<div class="col-sm-5 offerimg-w3l">
-								<img src="/images/off2.png" alt="" class="img-fluid">
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
-		</div>
-	</div>
-	<!-- middle section -->
+			<!-- middle section -->
 
-	<!-- footer  & copyright-->
-	<%- include("parts/footer") %>
-	<!-- //footer & copyright -->
+			<!-- footer  & copyright-->
+			<%- include("parts/footer") %>
+				<!-- //footer & copyright -->
 
-	<!-- js-files -->
-	<!-- jquery -->
-	<script src="/js/jquery-2.2.3.min.js"></script>
-	<!-- //jquery -->
+				<!-- js-files -->
+				<!-- jquery -->
+				<script src="/js/jquery-2.2.3.min.js"></script>
+				<!-- //jquery -->
 
-	<!-- nav smooth scroll -->
-	<script>
-		$(document).ready(function () {
-			$(".dropdown").hover(
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
-					$(this).toggleClass('open');
-				},
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
-					$(this).toggleClass('open');
-				}
-			);
-		});
-	</script>
-	<!-- //nav smooth scroll -->
+				<!-- nav smooth scroll -->
+				<script>
+					$(document).ready(function () {
+						$(".dropdown").hover(
+							function () {
+								$('.dropdown-menu', this).stop(true, true).slideDown("fast");
+								$(this).toggleClass('open');
+							},
+							function () {
+								$('.dropdown-menu', this).stop(true, true).slideUp("fast");
+								$(this).toggleClass('open');
+							}
+						);
+					});
+				</script>
+				<!-- //nav smooth scroll -->
 
-	<!-- popup modal (for location)-->
-	<script src="/js/jquery.magnific-popup.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
+				<!-- popup modal (for location)-->
+				<script src="/js/jquery.magnific-popup.js"></script>
+				<script>
+					$(document).ready(function () {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
 
-		});
-	</script>
-	<!-- //popup modal (for location)-->
+					});
+				</script>
+				<!-- //popup modal (for location)-->
 
-	<!-- cart-js -->
-	<script src="/js/minicart.js"></script>
-	<script>
-		paypals.minicarts
-			.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+				<!-- cart-js -->
+				<script src="/js/minicart.js"></script>
+				<!-- <script>
+						paypals.minicarts
+							.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-		paypals.minicarts.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+						paypals.minicarts.cart.on('checkout', function (evt) {
+							var items = this.items(),
+								len = items.length,
+								total = 0,
+								i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+							// Count the number of each item in the cart
+							for (i = 0; i < len; i++) {
+								total += items[i].get('quantity');
+							}
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-	<!-- //cart-js -->
+							if (total < 3) {
+								alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+								evt.preventDefault();
+							}
+						});
+					</script> -->
+				<!-- //cart-js -->
 
-	<!-- password-script -->
-	<script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+				<!-- password-script -->
+				<script>
+					window.onload = function () {
+						document.getElementById("password1").onchange = validatePassword;
+						document.getElementById("password2").onchange = validatePassword;
+					}
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
-	<!-- //password-script -->
+					function validatePassword() {
+						var pass2 = document.getElementById("password2").value;
+						var pass1 = document.getElementById("password1").value;
+						if (pass1 != pass2)
+							document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+						else
+							document.getElementById("password2").setCustomValidity('');
+						//empty string means no validation error
+					}
+				</script>
+				<!-- //password-script -->
 
-	<!-- imagezoom -->
-	<script src="/js/imagezoom.js"></script>
-	<!-- //imagezoom -->
+				<!-- imagezoom -->
+				<script src="/js/imagezoom.js"></script>
+				<!-- //imagezoom -->
 
-	<!-- flexslider -->
-	<link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" />
+				<!-- flexslider -->
+				<link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" />
+				<script src="/js/jquery.flexslider.js"></script>
+				<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function () {
+						$('.flexslider').flexslider({
+							animation: "slide",
+							controlNav: "thumbnails"
+						});
+					});
 
-	<script src="/js/jquery.flexslider.js"></script>
-	<script>
-		// Can also be used with $(document).ready()
-		$(window).load(function () {
-			$('.flexslider').flexslider({
-				animation: "slide",
-				controlNav: "thumbnails"
-			});
-		});
-	</script>
-	<!-- //FlexSlider-->
 
-	<!-- smoothscroll -->
-	<script src="/js/SmoothScroll.min.js"></script>
-	<!-- //smoothscroll -->
+				</script>
+				<!-- //FlexSlider-->
+				<script src="/js/jquery.nicescroll.min.js"></script>
+				<!-- start-smooth-scrolling -->
+				<script src="/js/move-top.js"></script>
+				<script src="/js/easing.js"></script>
+				<script>
+					jQuery(document).ready(function ($) {
+						$(".scroll").click(function (event) {
+							event.preventDefault();
 
-	<!-- start-smooth-scrolling -->
-	<script src="/js/move-top.js"></script>
-	<script src="/js/easing.js"></script>
-	<script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+							$('html,body').animate({
+								scrollTop: $(this.hash).offset().top
+							}, 1000);
+						});
+					});
+				</script>
+				<!-- //end-smooth-scrolling -->
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
-	</script>
-	<!-- //end-smooth-scrolling -->
+				<!-- smooth-scrolling-of-move-up -->
+				<script>
+					$(document).ready(function () {
+						$().UItoTop({
+							easingType: 'easeOutQuart'
+						});
 
-	<!-- smooth-scrolling-of-move-up -->
-	<script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+					});
+				</script>
+				<!-- //smooth-scrolling-of-move-up -->
 
-		});
-	</script>
-	<!-- //smooth-scrolling-of-move-up -->
+				<!-- for bootstrap working -->
+				<script src="/js/bootstrap.js"></script>
+				<!-- //for bootstrap working -->
+				<!-- //js-files -->
+				<script src="/js/filter-multi-select-bundle.min.js"></script>
+				<script src="/js/customs.js"></script>
+				<script src="/js/add-product.js"></script>
 
-	<!-- for bootstrap working -->
-	<script src="/js/bootstrap.js"></script>
-	<!-- //for bootstrap working -->
-	<!-- //js-files -->
-	<script src="/js/customs.js"></script>
 
 </body>
 

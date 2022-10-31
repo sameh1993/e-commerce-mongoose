@@ -1,41 +1,28 @@
 <!DOCTYPE html>
-<html >
+<html>
 
 <head>
-    <title>Electro Store Ecommerce Category Bootstrap Responsive Web Template | Single Product 1 :: w3layouts</title>
-    <!-- Meta tag Keywords -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8" />
-    <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
-    />
-    <script>
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-    <!-- //Meta tag Keywords -->
+    <%- include("parts/head") %>
 
-    <!-- Custom-Files -->
-    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- Bootstrap css -->
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- Main css -->
-    <link rel="stylesheet" href="/css/fontawesome-all.css">
-    <!-- Font-Awesome-Icons-CSS -->
-    <link href="/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- pop-up-box -->
-    <link href="/css/menu.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- menu style -->
-    <!-- //Custom-Files -->
+        <style>
+            .discount {
+                font-size: 31px;
+                color: #dc3545;
+                margin-right: 13px;
+            }
 
-    <!-- web fonts -->
-    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
-    <!-- //web fonts -->
+            .price {
+                font-size: 31px;
+                color: #0879C9;
+
+            }
+
+            .price span {
+                font-size: 16px;
+                text-transform:capitalize;
+            }
+        </style>
 
 </head>
 
@@ -51,8 +38,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title text-center">Log In</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form action="#" method="post">
@@ -75,7 +62,7 @@
                         </div>
                         <p class="text-center dont-do mt-3">Don't have an account?
                             <a href="#" data-toggle="modal" data-target="#exampleModal2">
-								Register Now</a>
+                                Register Now</a>
                         </p>
                     </form>
                 </div>
@@ -89,8 +76,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Register</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form action="#" method="post">
@@ -104,11 +91,13 @@
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1" required="">
+                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
+                                required="">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2" required="">
+                            <input type="password" class="form-control" placeholder=" " name="Confirm Password"
+                                id="password2" required="">
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control" value="Register">
@@ -117,7 +106,7 @@
                             <div class="custom-control custom-checkbox mr-sm-2">
                                 <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
                                 <label class="custom-control-label" for="customControlAutosizing2">I Accept to the Terms
-									& Conditions</label>
+                                    & Conditions</label>
                             </div>
                         </div>
                     </form>
@@ -161,7 +150,8 @@
                     <!-- tittle heading -->
                     <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
                         <span>S</span>ingle
-                        <span>P</span>age</h3>
+                        <span>P</span>age
+                    </h3>
                     <!-- //tittle heading -->
                     <div class="row">
                         <% if(product) { %>
@@ -169,10 +159,12 @@
                                 <div class="grid">
                                     <div class="flexslider">
                                         <ul class="slides">
-                                            <% for(let img of product.images) {  %>
-                                                <li data-thumb="/images/<%= product.category%>/<%= img %>">
+                                            <% for(let img of product.images) { %>
+                                                <li data-thumb="/images/<%= product.department%>/<%= img %>">
                                                     <div class="thumb-image">
-                                                        <img src="/images/<%= product.category %>/<%= img %>" data-imagezoom="true" class="img-fluid" alt=""> </div>
+                                                        <img src="/images/<%= product.department %>/<%= img %>"
+                                                            data-imagezoom="true" class="img-fluid" alt="">
+                                                    </div>
                                                 </li>
                                                 <% } %>
                                         </ul>
@@ -186,49 +178,68 @@
                                     <%= product.productName %>
                                 </h3>
                                 <p class="mb-3">
-                                    Price:
-                                    <span class="item_price"> EGP <%= product.price %> </span>
-                                    <del class="mx-2 font-weight-light">
-							<%= product.price - (( product.price * product.discount) / 100) %> </del>
-                                    <label>Free delivery</label>
-                                    <div class="a-row icon-farm-wrapper">
-                                        <div data-icon-content="icon-container-10d5e8bf-b37d-4463-bc77-62b5a12be8c6" data-name="AMAZON_DELIVERED_MENA" data-type="custom-pop-over" id="AMAZON_DELIVERED_MENA" class="a-column a-span3 a-text-center icon-container icon-grid-width celwidget a-declarative"
-                                            data-cel-widget="AMAZON_DELIVERED_MENA" data-csa-c-id="sx3ysp-36x89p-148u6p-p01vtg">
-                                            <div class="a-section a-spacing-none">
-                                                <img src="https://images-na.ssl-images-amazon.com/images/G/42/A2I-Convert/mobile/IconFarm/icon-amazon-delivered._CB403797073_.png" class="a-image-wrapper a-manually-loaded icon-box" id="" style="height:35px;width:35px;" alt="Delivered by Amazon" data-a-image-source="/images/IconFarm/icon-amazon-delivered._CB403797073_.png">
-                                            </div>
-                                            <div class="a-section a-spacing-none icon-content">
-                                                <a class="a-size-small a-link-normal a-text-normal" href="#">
-										Delivered by Amazon
-									</a>
-                                            </div>
+                                <div class="price d-flex">
+                                    <% var thePrice=product.price.toString().split(".") %>
+                                        <div class="discount">
+                                            <%= "-" + product.discount + "%" %>
+                                        </div>
+                                        <div class="currentPrice"> <span> Egp </span>
+                                            <%= thePrice[0] %> <span>
+                                                    <%= thePrice[1] %>
+                                                </span>
                                         </div>
 
-                                        <div data-icon-content="icon-container-bd2e5fa3-8ddd-4876-a784-139812fb422e" data-name="SAFE_PAYMENTS" data-type="custom-pop-over" id="SAFE_PAYMENTS" class="a-column a-span3 a-text-center icon-container icon-grid-width celwidget a-declarative" data-cel-widget="SAFE_PAYMENTS"
-                                            data-csa-c-id="624zri-u52et5-p7cqt4-brkf21">
-                                            <div class="a-section a-spacing-none">
-                                                <img src="https://images-na.ssl-images-amazon.com/images/G/42/A2I-Convert/mobile/IconFarm/icon-secure-transaction._CB414468582_.png">
-                                            </div>
-                                            <div class="a-section a-spacing-none icon-content">
-                                                <a class="a-size-small a-link-normal a-text-normal" href="#">
-										Secure transaction
-									</a>
-                                            </div>
+                                </div>
+
+                                <div class="a-row icon-farm-wrapper">
+                                    <div data-icon-content="icon-container-10d5e8bf-b37d-4463-bc77-62b5a12be8c6"
+                                        data-name="AMAZON_DELIVERED_MENA" data-type="custom-pop-over"
+                                        id="AMAZON_DELIVERED_MENA"
+                                        class="a-column a-span3 a-text-center icon-container icon-grid-width celwidget a-declarative"
+                                        data-cel-widget="AMAZON_DELIVERED_MENA"
+                                        data-csa-c-id="sx3ysp-36x89p-148u6p-p01vtg">
+                                        <div class="a-section a-spacing-none">
+                                            <img src="https://m.media-amazon.com/images/G/42/A2I-Convert/mobile/IconFarm/icon-amazon-delivered._CB403797073_.png"
+                                                class="a-image-wrapper a-manually-loaded icon-box" id=""
+                                                style="height:35px;width:35px;" alt="Delivered by Amazon"
+                                                data-a-image-source="/images/IconFarm/icon-amazon-delivered._CB403797073_.png">
+                                        </div>
+                                        <div class="a-section a-spacing-none icon-content">
+                                            <a class="a-size-small a-link-normal a-text-normal" href="#">
+                                                Delivered by Amazon
+                                            </a>
                                         </div>
                                     </div>
+
+                                    <div data-icon-content="icon-container-bd2e5fa3-8ddd-4876-a784-139812fb422e"
+                                        data-name="SAFE_PAYMENTS" data-type="custom-pop-over" id="SAFE_PAYMENTS"
+                                        class="a-column a-span3 a-text-center icon-container icon-grid-width celwidget a-declarative"
+                                        data-cel-widget="SAFE_PAYMENTS" data-csa-c-id="624zri-u52et5-p7cqt4-brkf21">
+                                        <div class="a-section a-spacing-none">
+                                            <img
+                                                src="https://m.media-amazon.com/images/G/42/A2I-Convert/mobile/IconFarm/icon-secure-transaction._CB414468582_.png">
+                                        </div>
+                                        <div class="a-section a-spacing-none icon-content">
+                                            <a class="a-size-small a-link-normal a-text-normal" href="#">
+                                                Secure transaction
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                                 </p>
-                                <% if(product.description[0].length) {  %>
+                                <% if(product.description[0].length) { %>
                                     <div class="single-infoagile">
                                         <h5 class="mb-2"> Description: </h5>
                                         <ul class="mb-3">
-                                            <% for(let desc of product.description) {  %>
-                                                <% const descObj = desc.split(":") %>
+                                            <% for(let desc of product.description) { %>
+                                                <% const descObj=desc.split(":") %>
                                                     <li class="mb-1">
-                                                        <span> <%= descObj[0] %> </span>
+                                                        <span>
+                                                            <%= descObj[0] %>
+                                                        </span>
                                                         <%= descObj[1] %>
                                                     </li>
                                                     <% } %>
-
                                         </ul>
                                     </div>
                                     <% } %>
@@ -236,38 +247,49 @@
                                         <div class="product-single-w3l">
                                             <p class="my-3">
                                                 <i class="far fa-hand-point-right mr-2"></i>
-                                                <label> <%= product.warranty %> Year</label>Manufacturer Warranty</p>
+                                                <label>
+                                                    <%= product.warranty %> Year
+                                                </label>Manufacturer Warranty
+                                            </p>
 
                                             <ul class="mb-4">
-                                                <% if(product.about.length > 0) {  %>
-                                                    <% for(let item of product.about) {  %>
+                                                <% if(product.about.length> 0) { %>
+                                                    <% for(let item of product.about) { %>
                                                         <li>
-                                                            <%= item %>
+                                                            <span>
+                                                                <%= item %>
+                                                            </span>
                                                         </li>
                                                         <% } %>
-                                                            <% } else {  %>
-                                                                <li> product.about </li>
+                                                            <% } else { %>
+                                                                <li><span> product.about </span> </li>
                                                                 <% } %>
                                             </ul>
                                         </div>
                                         <div class="occasion-cart">
-                                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                            <div
+                                                class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                                 <form action="#" method="get">
                                                     <fieldset>
                                                         <input type="hidden" name="cmd" value="_cart" />
                                                         <input type="hidden" name="add" value="1" />
                                                         <input type="hidden" name="business" value=" " />
-                                                        <input type="hidden" name="item_name" value="<%= product.productName %>" />
-                                                        <input type="hidden" name="amount" value="<%= product.amount %>" />
-                                                        <input type="hidden" name="discount_amount" value="<%= product.discount %>" />
+                                                        <input type="hidden" name="item_name"
+                                                            value="<%= product.productName %>" />
+                                                        <input type="hidden" name="amount"
+                                                            value="<%= product.amount %>" />
+                                                        <input type="hidden" name="discount_amount"
+                                                            value="<%= product.discount %>" />
                                                         <input type="hidden" name="currency_code" value="EGP" />
                                                         <input type="hidden" name="return" value=" " />
                                                         <input type="hidden" name="cancel_return" value=" " />
-                                                        <div class="row d-flex">
-                                                            <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                            <button formaction="/product/delete/<%= product._id %>" type="submit" class="btn btn-danger delete-product">
-											<i class="fa fa-trash"></i>
-										</button>
+                                                        <div class="row d-flex ml-0">
+                                                            <input type="submit" name="submit" value="Add to cart"
+                                                                class="button btn" />
+                                                            <button formaction="/product/delete/<%= product._id %>"
+                                                                type="submit" class="btn btn-danger delete-product">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
                                                         </div>
                                                     </fieldset>
                                                 </form>
@@ -327,21 +349,19 @@
             <!-- footer  & copyright-->
             <%- include("parts/footer") %>
                 <!-- //footer & copyright -->
-
-                <!-- js-files -->
                 <!-- jquery -->
                 <script src="/js/jquery-2.2.3.min.js"></script>
                 <!-- //jquery -->
 
                 <!-- nav smooth scroll -->
                 <script>
-                    $(document).ready(function() {
+                    $(document).ready(function () {
                         $(".dropdown").hover(
-                            function() {
+                            function () {
                                 $('.dropdown-menu', this).stop(true, true).slideDown("fast");
                                 $(this).toggleClass('open');
                             },
-                            function() {
+                            function () {
                                 $('.dropdown-menu', this).stop(true, true).slideUp("fast");
                                 $(this).toggleClass('open');
                             }
@@ -353,7 +373,7 @@
                 <!-- popup modal (for location)-->
                 <script src="/js/jquery.magnific-popup.js"></script>
                 <script>
-                    $(document).ready(function() {
+                    $(document).ready(function () {
                         $('.popup-with-zoom-anim').magnificPopup({
                             type: 'inline',
                             fixedContentPos: false,
@@ -378,10 +398,7 @@
 
                 <!-- password-script -->
                 <script>
-                    window.onload = function() {
-                        document.getElementById("password1").onchange = validatePassword;
-                        document.getElementById("password2").onchange = validatePassword;
-                    }
+
 
                     function validatePassword() {
                         var pass2 = document.getElementById("password2").value;
@@ -405,7 +422,7 @@
                 <script src="/js/jquery.flexslider.js"></script>
                 <script>
                     // Can also be used with $(document).ready()
-                    $(window).load(function() {
+                    $(window).load(function () {
                         $('.flexslider').flexslider({
                             animation: "slide",
                             controlNav: "thumbnails"
@@ -422,8 +439,8 @@
                 <script src="/js/move-top.js"></script>
                 <script src="/js/easing.js"></script>
                 <script>
-                    jQuery(document).ready(function($) {
-                        $(".scroll").click(function(event) {
+                    jQuery(document).ready(function ($) {
+                        $(".scroll").click(function (event) {
                             event.preventDefault();
 
                             $('html,body').animate({
@@ -436,13 +453,13 @@
 
                 <!-- smooth-scrolling-of-move-up -->
                 <script>
-                    $(document).ready(function() {
+                    $(document).ready(function () {
                         /*
                         var defaults = {
-                        	containerID: 'toTop', // fading element id
-                        	containerHoverID: 'toTopHover', // fading element hover id
-                        	scrollSpeed: 1200,
-                        	easingType: 'linear' 
+                            containerID: 'toTop', // fading element id
+                            containerHoverID: 'toTopHover', // fading element hover id
+                            scrollSpeed: 1200,
+                            easingType: 'linear' 
                         };
                         */
                         $().UItoTop({

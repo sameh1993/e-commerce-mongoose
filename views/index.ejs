@@ -1,321 +1,336 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="eng">
 
 <%- include("parts/head") %>
 
-<body dir="">
+    <body dir="">
 
-    <!-- start top header -->
-
-    <%- include("parts/top-header") %>
-
-    <!-- end top header -->
-
-    <!-- //header-bottom -->
-    <!-- navigation -->
-    <%- include("parts/navbar") %>
-    <!-- //navigation -->
-
-    <span id="slider" data-array="<%= JSON.stringify(slider) %>"> </span>
-
-    <!-- banner -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <!-- Indicators-->
-        <ol class="carousel-indicators">
-            <% for(const [index, element] of slider.entries()) { %>
-            <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>"
-                class="<% index == 0 ? 'active' : '' %>"></li>
-            <% } %>
-        </ol>
-        <div class="carousel-inner">
-            <input type="hidden" class="slider" value="<%= slider %>" />
-
-            <% for(let i=0; i < slider.length; i++) { %>
-            <div style="background-image: url('/images/<%= slider[i].image %>')"
-                class="carousel-item item<%= i + 1 %> <%= i == 0 ? 'active' : '' %>">
-
-                <div class="container">
-                    <div class="w3l-space-banner">
-                        <div class="carousel-caption p-lg-5 p-sm-4 p-3">
-                            <p>
-                                <%- slider[i].subTitle %>
-                            </p>
-                            <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
-                                <%- slider[i].title %>
-                            </h3>
-                            <a class="button2" href="/product/">Shop Now </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-
-
-        <!-- start form for add new slide -->
-        <div class="add-product fixed">
-            <i class="fa fa-window-close" aria-hidden="true"></i>
-
-            <div class="content">
-                <form class="form">
-                    <h4 class="text-center b-3"> add slider </h4>
-                    <div class="form-group">
-                        <input type="text" placeholder="EX.. get now <span> 00% </span> discount "
-                            class="form-control subtitle" name="subTitle" />
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" placeholder="enter  title" class="form-control title" name="title" />
-                    </div>
-
-                    <div class="form-group">
-                        <input type="file" class="image" accept="image/*" name="image" />
-                    </div>
-
-                    <button class="btn btn-primary text-capitalize"> send </button>
-                </form>
-            </div>
-
-        </div>
-        <!-- end form for add new slide -->
-    </div>
-    <!-- //banner -->
-
-    <% if(priceValue) { %>
-    <input type="hidden" class="url" value="<%= priceValue != 'sameh' ? JSON.stringify(priceValue) : 0 %>" />
-    <% } %>
+        <!-- start top header -->
 
 
 
+        <%- include("parts/top-header") %>
 
-    <!-- top Products -->
-    <div class="ads-grid py-sm-5 py-4">
-        <div class="container py-xl-4 py-lg-2">
-            <!-- tittle heading -->
-            <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>O</span>ur
-                <span>N</span>ew
-                <span>P</span>roducts
+            <!-- end top header -->
 
-            </h3>
-            <!-- //tittle heading -->
-            <input type="hidden" class="component" value="<%= include('parts/head') %>">
-            <div class="row">
-                <!-- product left -->
-                <div class="agileinfo-ads-display col-lg-9 relative">
-                    <div class="wrapper">
-                        <!-- first section -->
-                        <div class="mobiles product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                            <h3 class="heading-tittle text-center font-italic">New Brand Mobiles </h3>
-                            <div class="row">
-                                <% if(mobiles.length> 0) { %>
-                                <% for(let prod of mobiles) { %>
-                                    <%- include("parts/product-com", {prod: prod}) %> 
-                                <% } %>
-                                <% } else { %>
-                                <div class="alert alert-danger text-small text-center text-capitalize mt-4 w-100">
-                                    there are not products yet
-                                </div>
-                                <% } %>
-
-
-
-                            </div>
-                        </div>
-                        <!-- //first section -->
-                        <!-- second section -->
-                        <div class="tvScreen product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                            <h3 class="heading-tittle text-center font-italic">Tv & Audio</h3>
-                            <div class="row">
-
-                                <% if(tvScreen.length > 0) { %>
-                                <% for(let tv of tvScreen) { %>
-                                    <%- include("parts/product-com", {prod: tv}) %> 
-                                <% } %>
-                                <% } else { %>
-                                <div class="alert alert-danger text-center text-capitalize mt-4 w-100">
-                                    there are not products yet
-                                </div>
-                                <% } %>
+            <!-- //header-bottom -->
+            <!-- navigation -->
+            <%- include("parts/navbar") %>
+                <!-- //navigation -->
 
 
 
 
 
-                            </div>
-                        </div>
-                        <!-- //second section -->
-                        <!-- third section -->
-                        <div class="product-sec1 product-sec2 px-sm-5 px-3">
-                            <div class="row">
-                                <h3 class="col-md-4 effect-bg">Summer Carnival</h3>
-                                <p class="w3l-nut-middle">Get Extra 10% Off</p>
-                                <div class="col-md-8 bg-right-nut">
-                                    <img src="/images/image1.png" alt="">
+                <span id="slider" data-array="<%= JSON.stringify(slider) %>"> </span>
+
+                <!-- banner -->
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators-->
+                    <ol class="carousel-indicators">
+                        <% for(const [index, element] of slider.entries()) { %>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>"
+                                class="<% index == 0 ? 'active' : '' %>"></li>
+                            <% } %>
+                    </ol>
+                    <div class="carousel-inner">
+                        <input type="hidden" class="slider" value="<%= slider %>" />
+
+                        <% for(let i=0; i < slider.length; i++) { %>
+                            <div style="background-image: url('/images/<%= slider[i].image %>')"
+                                class="carousel-item item<%= i + 1 %> <%= i == 0 ? 'active' : '' %>">
+
+                                <div class="container">
+                                    <div class="w3l-space-banner">
+                                        <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                                            <p>
+                                                <%- slider[i].subTitle %>
+                                            </p>
+                                            <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
+                                                <%- slider[i].title %>
+                                            </h3>
+                                            <a class="button2" href="/product/">Shop Now </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- //third section -->
-                        <!-- fourth section -->
-                        <div class="houseapplince product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
-                            <h3 class="heading-tittle text-center font-italic">Large Appliances</h3>
-                            <div class="row">
-                                <% if(houseapplince.length> 0) { %>
-                                <% for(let houseItem of houseapplince) { %>
-                                    <%- include("parts/product.com", { prod: houseItem }) %> 
-                                <% } %>
-                                <% } else { %>
-                                <div class="alert  alert-danger text-center text-capitalize w-100 mt-4">
-                                    there are not products yet </div>
-                                <% } %>
-                            </div>
-                        </div>
-                        <!-- //fourth section -->
+                            <% } %>
                     </div>
-                </div>
-                <!-- //product left -->
-                <% if(priceValue) { %>
-                <input type="hidden" class="priceValue" value="<%= priceValue %>" />
-                <% } %>
-                <!-- product right -->
-                <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
-                    <div class="side-bar p-sm-4 p-3">
-                        <div class="search-hotel border-bottom py-2">
-                            <h3 class="agileits-sear-head mb-3">Search Here..</h3>
-                            <form action="#" method="post">
-                                <input type="search" placeholder="Product name..." name="search" required="">
-                                <input type="submit" value="">
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+
+                    <!-- start form for add new slide -->
+                    <div class="add-product fixed">
+                        <i class="fa fa-window-close" aria-hidden="true"></i>
+
+                        <div class="content">
+                            <form class="form">
+                                <h4 class="text-center b-3"> add slider </h4>
+                                <div class="form-group">
+                                    <input type="text" placeholder="EX.. get now <span> 00% </span> discount "
+                                        class="form-control subtitle" name="subTitle" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" placeholder="enter  title" class="form-control title"
+                                        name="title" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="file" class="image" accept="image/*" name="image" />
+                                </div>
+
+                                <button class="btn btn-primary text-capitalize"> send </button>
                             </form>
                         </div>
-                        <!-- price -->
-                        <div class="range border-bottom py-2">
-                            <h3 class="agileits-sear-head mb-3">Price</h3>
-                            <div class="w3l-range">
-                                <ul>
-                                    <li>
-                                        <a href="/price/1000">under $1000</a>
-                                    </li>
-                                    <li class="my-1">
-                                        <a href="/price/1000&5000">$1,000 - $5,000</a>
-                                    </li>
-                                    <li>
 
-                                        <a href="/price/5000&10000">$5,000 - $10,000</a>
-                                    </li>
-                                    <li class="my-1">
+                    </div>
+                    <!-- end form for add new slide -->
+                </div>
+                <!-- //banner -->
 
-                                        <a href="/price/10000&20000">$10,000 - $20,000</a>
-                                    </li>
-                                    <li>
-                                        <a href="/price/20000&30000">$20,000 $30,000</a>
-                                    </li>
-                                    <li class="mt-1">
-                                        <a href="/price/30000">Over $30,000</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- //price -->
-                        <!-- discounts -->
-                        <div class="left-side border-bottom  py-2">
-                            <h3 class="agileits-sear-head mb-3">Discount</h3>
-                            <ul class="discount">
-                                <li>
-                                    <div>
-                                        <input name="checkbox" data-discount="5" type="radio" class="checked">
-                                        <span class="span">5% or less</span>
+                <% if(priceValue) { %>
+                    <input type="hidden" class="url"
+                        value="<%= priceValue != 'sameh' ? JSON.stringify(priceValue) : 0 %>" />
+               <% } %>
+
+
+
+
+                        <!-- top Products -->
+                        <div class="ads-grid py-sm-5 py-4">
+                            <div class="container py-xl-4 py-lg-2">
+                                <!-- tittle heading -->
+                                <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+                                    <span>O</span>ur
+                                    <span>N</span>ew
+                                    <span>P</span>roducts
+
+                                </h3>
+                                <!-- //tittle heading -->
+                                <input type="hidden" class="component" value="<%= include('parts/head') %>">
+                                <div class="row">
+                                    <!-- product left -->
+                                    <div class="agileinfo-ads-display col-lg-9 relative">
+                                        <div class="wrapper">
+                                            <!-- first section -->
+                                            <div class="mobiles product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                                                <h3 class="heading-tittle text-center font-italic">New Brand Mobiles
+                                                </h3>
+                                                <div class="row">
+                                                    <% if(mobiles.length> 0) { %>
+                                                        <% for(let prod of mobiles) { %>
+                                                            <%- include("parts/product-com", {prod: prod}) %>
+                                                                <% } %>
+                                                                    <% } else { %>
+                                                                        <div
+                                                                            class="alert alert-danger text-small text-center text-capitalize mt-4 w-100">
+                                                                            there are not products yet
+                                                                        </div>
+                                                                        <% } %>
+
+
+
+                                                </div>
+                                            </div>
+                                            <!-- //first section -->
+                                            <!-- second section -->
+                                            <div class="tvScreen product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                                                <h3 class="heading-tittle text-center font-italic">Tv & Audio</h3>
+                                                <div class="row">
+
+                                                    <% if(tvScreen.length> 0) { %>
+                                                        <% for(let tv of tvScreen) { %>
+                                                            <%- include("parts/product-com", {prod: tv}) %>
+                                                                <% } %>
+                                                                    <% } else { %>
+                                                                        <div
+                                                                            class="alert alert-danger text-center text-capitalize mt-4 w-100">
+                                                                            there are not products yet
+                                                                        </div>
+                                                                        <% } %>
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <!-- //second section -->
+                                            <!-- third section -->
+                                            <div class="product-sec1 product-sec2 px-sm-5 px-3">
+                                                <div class="row">
+                                                    <h3 class="col-md-4 effect-bg">Summer Carnival</h3>
+                                                    <p class="w3l-nut-middle">Get Extra 10% Off</p>
+                                                    <div class="col-md-8 bg-right-nut">
+                                                        <img src="/images/image1.png" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- //third section -->
+                                            <!-- fourth section -->
+                                            <div class="houseapplince product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
+                                                <h3 class="heading-tittle text-center font-italic">Large Appliances</h3>
+                                                <div class="row">
+                                                    <% if(houseapplince.length> 0) { %>
+                                                        <% for(let houseItem of houseapplince) { %>
+                                                            <%- include("parts/product-com", { prod: houseItem }) %>
+                                                                <% } %>
+                                                                    <% } else { %>
+                                                                        <div
+                                                                            class="alert  alert-danger text-center text-capitalize w-100 mt-4">
+                                                                            there are not products yet </div>
+                                                                        <% } %>
+                                                </div>
+                                            </div>
+                                            <!-- //fourth section -->
+                                        </div>
                                     </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <input value="false" data-discount="10" type="radio" name="checkbox"
-                                            class="checked">
-                                        <span class="span">10% or less</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input value="false" data-discount="20" name="checkbox" type="radio"
-                                        class="checked">
-                                    <span class="span">20% or less</span>
-                                </li>
-                                <li>
-                                    <input value="false" data-discount="30" name="checkbox" type="radio"
-                                        class="checked">
-                                    <span class="span">30% or less</span>
-                                </li>
-                                <li>
-                                    <input value="false" data-discount="50" name="checkbox" type="radio" class="radio">
-                                    <span class="span ">50% or less</span>
-                                </li>
-                                <li>
-                                    <input value="false " data-discount="60 " name="checkbox" type="radio"
-                                        class="radio">
-                                    <span class="span ">60% or less</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- //discounts -->
-                        <!-- reviews -->
-                        <div class="customer-rev border-bottom left-side py-2 ">
-                            <h3 class="agileits-sear-head mb-3 ">Customer Review</h3>
-                            <ul>
-                                <li>
-                                    <a href="# ">
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <span>5.0</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="# ">
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <span>4.0</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="# ">
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star-half "></i>
-                                        <span>3.5</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="# ">
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <span>3.0</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="# ">
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star "></i>
-                                        <i class="fas fa-star-half "></i>
-                                        <span>2.5</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                                    <!-- //product left -->
+                                    <% if(priceValue) { %>
+                                        <input type="hidden" class="priceValue" value="<%= priceValue %>" />
+                                        <% } %>
+                                            <!-- product right -->
+                                            <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
+                                                <div class="side-bar p-sm-4 p-3">
+                                                    <div class="search-hotel border-bottom py-2">
+                                                        <h3 class="agileits-sear-head mb-3">Search Here..</h3>
+                                                        <form action="#" method="post">
+                                                            <input type="search" placeholder="Product name..."
+                                                                name="search" required="">
+                                                            <input type="submit" value="">
+                                                        </form>
+                                                    </div>
+                                                    <!-- price -->
+                                                    <div class="range border-bottom py-2">
+                                                        <h3 class="agileits-sear-head mb-3">Price</h3>
+                                                        <div class="w3l-range">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/price/1000">under $1000</a>
+                                                                </li>
+                                                                <li class="my-1">
+                                                                    <a href="/price/1000&5000">$1,000 - $5,000</a>
+                                                                </li>
+                                                                <li>
 
-                        <!-- delivery -->
-                        <div class="left-side border-bottom py-2">
+                                                                    <a href="/price/5000&10000">$5,000 - $10,000</a>
+                                                                </li>
+                                                                <li class="my-1">
+
+                                                                    <a href="/price/10000&20000">$10,000 - $20,000</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/price/20000&30000">$20,000 $30,000</a>
+                                                                </li>
+                                                                <li class="mt-1">
+                                                                    <a href="/price/30000">Over $30,000</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- //price -->
+                                                    <!-- discounts -->
+                                                    <div class="left-side border-bottom  py-2">
+                                                        <h3 class="agileits-sear-head mb-3">Discount</h3>
+                                                        <ul class="discount">
+                                                            <li>
+                                                                <div>
+                                                                    <input name="checkbox" data-discount="5"
+                                                                        type="radio" class="checked">
+                                                                    <span class="span">5% or less</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div>
+                                                                    <input value="false" data-discount="10" type="radio"
+                                                                        name="checkbox" class="checked">
+                                                                    <span class="span">10% or less</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <input value="false" data-discount="20" name="checkbox"
+                                                                    type="radio" class="checked">
+                                                                <span class="span">20% or less</span>
+                                                            </li>
+                                                            <li>
+                                                                <input value="false" data-discount="30" name="checkbox"
+                                                                    type="radio" class="checked">
+                                                                <span class="span">30% or less</span>
+                                                            </li>
+                                                            <li>
+                                                                <input value="false" data-discount="50" name="checkbox"
+                                                                    type="radio" class="radio">
+                                                                <span class="span ">50% or less</span>
+                                                            </li>
+                                                            <li>
+                                                                <input value="false " data-discount="60 "
+                                                                    name="checkbox" type="radio" class="radio">
+                                                                <span class="span ">60% or less</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- //discounts -->
+                                                    <!-- reviews -->
+                                                    <div class="customer-rev border-bottom left-side py-2 ">
+                                                        <h3 class="agileits-sear-head mb-3 ">Customer Review</h3>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="# ">
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <span>5.0</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="# ">
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <span>4.0</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="# ">
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star-half "></i>
+                                                                    <span>3.5</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="# ">
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <span>3.0</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="# ">
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star "></i>
+                                                                    <i class="fas fa-star-half "></i>
+                                                                    <span>2.5</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <!-- delivery -->
+                                                    <!-- <div class="left-side border-bottom py-2">
                             <h3 class="agileits-sear-head mb-3">Cash On Delivery</h3>
                             <ul>
                                 <li>
@@ -323,10 +338,10 @@
                                     <span class="span">Eligible for Cash On Delivery</span>
                                 </li>
                             </ul>
-                        </div>
-                        <!-- //delivery -->
-                        <!-- arrivals -->
-                        <div class="left-side border-bottom py-2">
+                        </div> -->
+                                                    <!-- //delivery -->
+                                                    <!-- arrivals -->
+                                                    <!-- <div class="left-side border-bottom py-2">
                             <h3 class="agileits-sear-head mb-3">New Arrivals</h3>
                             <ul>
                                 <li>
@@ -338,247 +353,191 @@
                                     <span class="span">Last 90 days</span>
                                 </li>
                             </ul>
+                        </div> -->
+                                                    <!-- //arrivals -->
+                                                    <!-- best seller -->
+                                                    <div class="f-grid py-2">
+                                                        <h3 class="agileits-sear-head mb-3">Best Seller</h3>
+                                                        <div class="box-scroll">
+                                                            <div class="scroll">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-sm-2 col-3 left-mar">
+                                                                        <img src="/images/k1.jpg" alt=""
+                                                                            class="img-fluid">
+                                                                    </div>
+                                                                    <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+                                                                        <a href="">Samsung Galaxy On7 Prime (Gold, 4GB
+                                                                            RAM + 64GB Memory)</a>
+                                                                        <a href="" class="price-mar mt-2">$12,990.00</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row my-4">
+                                                                    <div class="col-lg-3 col-sm-2 col-3 left-mar">
+                                                                        <img src="/images/k2.jpg" alt=""
+                                                                            class="img-fluid">
+                                                                    </div>
+                                                                    <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+                                                                        <a href="">Haier 195 L 4 Star Direct-Cool Single
+                                                                            Door Refrigerator</a>
+                                                                        <a href="" class="price-mar mt-2">$12,499.00</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-sm-2 col-3 left-mar">
+                                                                        <img src="/images/k3.jpg" alt=""
+                                                                            class="img-fluid">
+                                                                    </div>
+                                                                    <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+                                                                        <a href="">Ambrane 13000 mAh Power Bank (P-1310
+                                                                            Premium)</a>
+                                                                        <a href="" class="price-mar mt-2">$1,199.00 </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- //best seller -->
+                                                </div>
+                                                <!-- //product right -->
+                                            </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- //arrivals -->
-                        <!-- best seller -->
-                        <div class="f-grid py-2">
-                            <h3 class="agileits-sear-head mb-3">Best Seller</h3>
-                            <div class="box-scroll">
-                                <div class="scroll">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-sm-2 col-3 left-mar">
-                                            <img src="/images/k1.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
-                                            <a href="">Samsung Galaxy On7 Prime (Gold, 4GB
-                                                RAM + 64GB Memory)</a>
-                                            <a href="" class="price-mar mt-2">$12,990.00</a>
-                                        </div>
-                                    </div>
-                                    <div class="row my-4">
-                                        <div class="col-lg-3 col-sm-2 col-3 left-mar">
-                                            <img src="/images/k2.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
-                                            <a href="">Haier 195 L 4 Star Direct-Cool Single
-                                                Door Refrigerator</a>
-                                            <a href="" class="price-mar mt-2">$12,499.00</a>
+                        <!-- //top products -->
+
+                        <!-- middle section -->
+                        <div class="join-w3l1 py-sm-5 py-4">
+                            <div class="container py-xl-4 py-lg-2">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="join-agile text-left p-4">
+                                            <div class="row">
+                                                <div class="col-sm-7 offer-name">
+                                                    <h6>Smooth, Rich & Loud Audio</h6>
+                                                    <h4 class="mt-2 mb-3">Branded Headphones</h4>
+                                                    <p>Sale up to 25% off all in store</p>
+                                                </div>
+                                                <div class="col-sm-5 offerimg-w3l">
+                                                    <img src="/images/off1.png" alt="" class="img-fluid">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-sm-2 col-3 left-mar">
-                                            <img src="/images/k3.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="col-lg-9 col-sm-10 col-9 w3_mvd">
-                                            <a href="">Ambrane 13000 mAh Power Bank (P-1310
-                                                Premium)</a>
-                                            <a href="" class="price-mar mt-2">$1,199.00 </a>
+                                    <div class="col-lg-6 mt-lg-0 mt-5">
+                                        <div class="join-agile text-left p-4">
+                                            <div class="row ">
+                                                <div class="col-sm-7 offer-name">
+                                                    <h6>A Bigger Phone</h6>
+                                                    <h4 class="mt-2 mb-3">Smart Phones 5</h4>
+                                                    <p>Free shipping order over $100</p>
+                                                </div>
+                                                <div class="col-sm-5 offerimg-w3l">
+                                                    <img src="/images/off2.png" alt="" class="img-fluid">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- //best seller -->
-                    </div>
-                    <!-- //product right -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //top products -->
+                        <!-- middle section -->
 
-    <!-- middle section -->
-    <div class="join-w3l1 py-sm-5 py-4">
-        <div class="container py-xl-4 py-lg-2">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="join-agile text-left p-4">
-                        <div class="row">
-                            <div class="col-sm-7 offer-name">
-                                <h6>Smooth, Rich & Loud Audio</h6>
-                                <h4 class="mt-2 mb-3">Branded Headphones</h4>
-                                <p>Sale up to 25% off all in store</p>
-                            </div>
-                            <div class="col-sm-5 offerimg-w3l">
-                                <img src="/images/off1.png" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mt-lg-0 mt-5">
-                    <div class="join-agile text-left p-4">
-                        <div class="row ">
-                            <div class="col-sm-7 offer-name">
-                                <h6>A Bigger Phone</h6>
-                                <h4 class="mt-2 mb-3">Smart Phones 5</h4>
-                                <p>Free shipping order over $100</p>
-                            </div>
-                            <div class="col-sm-5 offerimg-w3l">
-                                <img src="/images/off2.png" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- middle section -->
+                        <!-- start footer -->
+                        <%- include('parts/footer') %>
+                            <!-- end footer -->
 
-    <!-- start footer -->
-    <%- include('parts/footer') %>
-    <!-- end footer -->
+                            <input type="hidden" class="isAuth" value="<%= isAuth ?  isAuth : undefined  %>" />
 
-    <input type="hidden" class="isAuth" value="<%= isAuth ?  isAuth : undefined  %>" />
+                            <!-- js-files -->
+                            <!-- jquery -->
+                            <script src="/js/jquery-2.2.3.min.js"></script>
+                            <!-- //jquery -->
 
-    <!-- js-files -->
-    <!-- jquery -->
-    <script src="/js/jquery-2.2.3.min.js"></script>
-    <!-- //jquery -->
+                            <!-- popup modal (for location)-->
+                            <script src="/js/jquery.magnific-popup.js"></script>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.popup-with-zoom-anim').magnificPopup({
+                                        type: 'inline',
+                                        fixedContentPos: false,
+                                        fixedBgPos: true,
+                                        overflowY: 'auto',
+                                        closeBtnInside: true,
+                                        preloader: false,
+                                        midClick: true,
+                                        removalDelay: 300,
+                                        mainClass: 'my-mfp-zoom-in'
+                                    });
 
-    <!-- nav smooth scroll -->
-    <script>
-        $(document).ready(function () {
-            $(".dropdown").hover(
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                    $(this).toggleClass('open');
-                },
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                    $(this).toggleClass('open');
-                }
-            );
-        });
-    </script>
-    <!-- //nav smooth scroll -->
+                                });
+                            </script>
+                            <!-- //popup modal (for location)  -->
 
-    <!-- popup modal (for location)-->
-    <script src="/js/jquery.magnific-popup.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.popup-with-zoom-anim').magnificPopup({
-                type: 'inline',
-                fixedContentPos: false,
-                fixedBgPos: true,
-                overflowY: 'auto',
-                closeBtnInside: true,
-                preloader: false,
-                midClick: true,
-                removalDelay: 300,
-                mainClass: 'my-mfp-zoom-in'
-            });
+                            <input type="hidden" class="login" value="<%= isAuth %>" />
+                            <!-- cart-js -->
+                            <script src="/js/minicart.js"></script>
+                            <script>
 
-        });
-    </script>
-    <!-- //popup modal (for location)  -->
+                                paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-    <input type="hidden" class="login" value="<%= isAuth %>" />
-    <!-- cart-js -->
-    <script src="/js/minicart.js"></script>
-    <script>
-        paypals.minicarts
-            .render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+                                $(".click").click(() => {
+
+                                    const isLogin = $("input.login").val()
+
+                                    if (isLogin) {
+                                        console.log("logged")
+                                        paypals.minicarts.view.show()
+                                    } else {
+                                        $(".message").addClass("alert-info").html("you must be logged in").slideDown(700, function () {
+                                            $(this).delay(4000).slideUp(500)
+                                        })
+                                    }
+
+                                })
+
+                                paypals.minicarts.cart.add('checkout', function (evt) {
+                                    var items = this.items(),
+                                        len = items.length,
+                                        total = 0,
+                                        i;
+
+                                    // Count the number of each item in the cart
+                                    for (i = 0; i < len; i++) {
+                                        total += items[i].get('quantity');
+                                    }
+                                });
+                            </script>
+                            <!-- //cart-js -->
+
+                            <!-- password-script -->
+                            <script>
+                                window.onload = function () {
+                                    document.getElementById("password1").onchange = validatePassword;
+                                    document.getElementById("password2").onchange = validatePassword;
+                                }
+
+                                $(".parent-about input:after").click(function () {
+                                    console.log("sameh sayed")
+                                })
+
+                                function validatePassword() {
+                                    var pass2 = document.getElementById("password2").value;
+                                    var pass1 = document.getElementById("password1").value;
+                                    if (pass1 != pass2)
+                                        document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+                                    else
+                                        document.getElementById("password2").setCustomValidity('');
+                                }
+                            </script>
+                            <!-- //password-script -->
 
 
-        $(".click").click(() => {
-
-            const isLogin = $("input.login").val()
-
-            if (isLogin) {
-                console.log("logged")
-                paypals.minicarts.view.show()
-            } else {
-                $(".message").addClass("alert-info").html("you must be logged in").slideDown(700, function () {
-                    $(this).delay(4000).slideUp(500)
-                })
-            }
-
-        })
-
-        
-
-        paypals.minicarts.cart.on('checkout', function (evt) {
-            var items = this.items(),
-                len = items.length,
-                total = 0,
-                i;
-
-            // Count the number of each item in the cart
-            for (i = 0; i < len; i++) {
-                total += items[i].get('quantity');
-            }
-
-            // if (total < 3) {
-            //     alert(
-            //         'The minimum order quantity is 3. Please add less to your shopping cart before checking out'
-            //     );
-            //     evt.preventDefault();
-            // }
-        });
-    </script>
-    <!-- //cart-js -->
-
-    <!-- password-script -->
-    <script>
-        window.onload = function () {
-            document.getElementById("password1").onchange = validatePassword;
-            document.getElementById("password2").onchange = validatePassword;
-        }
-
-        function validatePassword() {
-            var pass2 = document.getElementById("password2").value;
-            var pass1 = document.getElementById("password1").value;
-            if (pass1 != pass2)
-                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-            else
-                document.getElementById("password2").setCustomValidity('');
-            // empty string means no validation error
-        }
-    </script>
-    <!-- //password-script -->
-
-    <!-- scroll seller -->
-    <script src="/js/scroll.js"></script>
-    <!-- //scroll seller -->
-
-    <!-- smoothscroll -->
-    <script src="/js/SmoothScroll.min.js"></script>
-    <!-- //smoothscroll -->
-
-    <!-- start-smooth-scrolling -->
-    <script src="/js/move-top.js"></script>
-    <script src="/js/easing.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-
-                $('html,body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 1000);
-            });
-        });
-    </script>
-    <!-- //end-smooth-scrolling -->
-
-    <!-- smooth-scrolling-of-move-up -->
-    <script>
-        $(document).ready(function () {
-
-            $().UItoTop({
-                easingType: 'easeOutQuart'
-            });
-
-        });
-    </script>
-    <!-- //smooth-scrolling-of-move-up -->
-
-    <!-- for bootstrap working -->
-    <script src="/js/bootstrap.js"></script>
-    <!-- //for bootstrap working -->
-    <!-- //js-files -->
-    <script src="/axios/dist/axios.min.js"></script>
-    <script src="/js/customs.js"></script>
-</body>
+                            <!-- for bootstrap working -->
+                            <script src="/js/bootstrap.js"></script>
+                            <!-- //for bootstrap working -->
+                            <!-- //js-files -->
+                            <script src="/axios/dist/axios.min.js"></script>
+                            <script src="/js/customs.js"></script>
+    </body>
 
 </html>

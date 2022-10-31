@@ -29,16 +29,15 @@ router.post(
   multer({
     storage: multer.diskStorage({
       destination: (req, file, cb) => {
-        const url = path.join(__dirname, "..", "assets", "images", req.body.category)
-        console.log(url)
+        console.log(req.body.category)
+        const url = path.join(__dirname, "..", "assets", "images", req.body.department)
         if(!fs.existsSync(url)) {
           fs.mkdir(url, err => {
-            console.log("create " + req.body.category)
           })
         } else {
           console.log("not found Mobiles")
         }
-        cb(null, "assets/images/" + req.body.category);
+        cb(null, "assets/images/" + req.body.department);
 
       },
       filename: (req, file, cb) => {
@@ -60,7 +59,7 @@ router.post("/edit/:id",
 multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, "assets/images/" + req.body.categories);
+      cb(null, "assets/images/" + req.body.department);
     },
     filename: (req, file, cb) => {
       cb(null, Date.now() + "-" + file.originalname);
@@ -74,7 +73,5 @@ router.get("/delete/:id", getDeleteproduct)
 router.get("/:id", getProduct);
 
 router.post("/checkout", getcheckoutPage)
-
-
 
 module.exports = router;

@@ -1,12 +1,12 @@
-const productModel = require("../model/products.model");
+const productsModel = require("../model/products.model")
 const { getSlider } = require("../model/slide.model");
 
 exports.getHomepage = (req, res) => {
 
     const id = req.params.id;
-    var filterMobiles = { category: "mobiles" };
-    var filterTvScreen = { category: "tv, screen" };
-    var filterHousehold = { category: "household appliance" };
+    var filterMobiles = { category: {$in : ["mobiles & accessories"] }};
+    var filterTvScreen = { category:{ $in : ["tv & audio"]} };
+    var filterHousehold = { category:{ $in:  ["large appliances"] }};
 
     var params = req.params.id;
 
@@ -29,10 +29,13 @@ exports.getHomepage = (req, res) => {
         }
     }
 
+    //  return console.log(filterMobiles)
 
-    productModel.getProductsByFilter(filterMobiles).then((mobiles) => {
-            productModel.getProductsByFilter(filterTvScreen).then((tvScreen) => {
-                productModel.getProductsByFilter(filterHousehold).then((houseHold) => {
+    const { getProductsByFilter }  = require("../model/products.model")
+
+    getProductsByFilter(filterMobiles).then((mobiles) => {
+        getProductsByFilter(filterTvScreen).then((tvScreen) => {
+            getProductsByFilter(filterHousehold).then((houseHold) => {
                     getSlider().then((slider) => {
                         console.log(req.session.userid, 'isAuth')
                         res.render("index", {
@@ -60,6 +63,8 @@ exports.getHomepage = (req, res) => {
 
 exports.updateProductByFilter = (req, res) => {
 
+    // return console.log(req.body)
+
     const mobiles = req.body.filterMobiles;
     const tv = req.body.filterTvScreen;
     const house = req.body.filterHousehold;
@@ -71,11 +76,11 @@ exports.updateProductByFilter = (req, res) => {
         house.price = price
     }
 
-    productModel
+    productsModel
         .getProductsByFilter(mobiles)
         .then((resultMobiles) => {
-            productModel.getProductsByFilter(tv).then((resultTv) => {
-                productModel.getProductsByFilter(house).then((resultHouse) => {
+            productsModel.getProductsByFilter(tv).then((resultTv) => {
+                productsModel.getProductsByFilter(house).then((resultHouse) => {
                     res.json({
                         mobiles: resultMobiles,
                         tv: resultTv,

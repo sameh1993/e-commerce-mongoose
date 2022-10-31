@@ -5,6 +5,11 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 
+
+:root {
+    --mainColor: #f45c5d;
+}
+
 html,
 body {
     margin: 0;
@@ -32,7 +37,7 @@ a {
 
 .alert-danger {
     font-size: 13px;
-    text-transform: capitalize;
+    text-align:Center;
 }
 
 .fade.message {
@@ -180,6 +185,12 @@ label {
     font-size: 22px;
 }
 
+.product-sec1 .alert-danger {
+    margin-left:10px;
+    margin-right: 10px;
+    padding:7px;
+    font-size: 14px;
+}
 
 /*-- top-header --*/
 
@@ -209,6 +220,7 @@ label {
 
 .header-right ul li a {
     text-decoration: none;
+    user-select: none;
 }
 
 .header-right ul li i {
@@ -405,9 +417,7 @@ button.w3view-cart {
 
 /*-- navigation-dropdown --*/
 
-.agile_inner_drop_nav_info {
-    min-width: 673px;
-}
+
 
 ul.multi-column-dropdown li {
     list-style-type: none;
@@ -421,6 +431,8 @@ ul.multi-column-dropdown li input[type='submit'] {
     color: #007bff;
     padding-left: 0;
     margin-left: 0;
+    border:0;
+    outline: none
 }
 
 .dropdown-menu>.active>a,
@@ -618,6 +630,30 @@ h3.tittle-w3l span {
     letter-spacing: 0;
 }
 
+@media(max-width: 767px){
+    h3.tittle-w3l {
+        font-size: 27px;
+    }
+
+    h3.tittle-w3l span {
+        font-size: 30px;
+    }
+
+    h3.heading-tittle {
+        font-size: 22px !important;
+    }
+    .header-bot {
+        padding: 0 !important;
+    }
+
+    div.alert-danger {
+        font-size: 14px;
+        padding: 7px;
+        text-align:center;
+        margin-top: 20px;
+    }
+}
+
 
 /*-- //heading style --*/
 
@@ -650,9 +686,9 @@ h3.tittle-w3l span {
     text-decoration: none;
     border: none;
     border-radius: 0;
-    width: 145px;
+    width: 132px;
     text-transform: uppercase;
-    padding: 13px;
+    padding: 8px 12px;
     outline: none;
     letter-spacing: 1px;
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.45);
@@ -1067,6 +1103,7 @@ h3.agileits-sear-head {
 .side-bar {
     background-color: #F9F9F9;
     height: fit-content;
+    box-shadow: 0px 0px 10px #e8e6e6;
 }
 
 .side-bar form {
@@ -1176,7 +1213,12 @@ a.price-mar {
 /*-- special effect --*/
 
 .product-sec1 {
-    box-shadow: 0px 0px 15px 0px #D6D6D6;
+    box-shadow: 0px 0px 15px 0px #efecec;
+    background-color: #fff;
+}
+
+.add-product {
+    background-color: #fdfdfd;
 }
 
 .product-sec1 .row .item {
@@ -1194,6 +1236,11 @@ a.price-mar {
     text-align: center;
 }
 
+.header-bot {
+    padding: 20px 0;
+}
+
+
 h3.heading-tittle {
     color: #000;
     font-size: 32px;
@@ -1203,24 +1250,39 @@ h3.heading-tittle {
 
 .item-info-product h4 a {
     color: #000;
-    font-size: 17px;
+    font-size: 14px;
     letter-spacing: 1px;
 }
 
 span.item_price {
-    font-size: 18px;
-    color: #d60404;
+    /* color: var(--mainColor); */
+    color : #0879c9;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.info-product-price del {
+span.item_price + del {
+    font-size: 18px;
+    color: #d60404;
     font-weight: 300;
-    margin-left: 13px;
     font-size: 15px;
+}
+
+
+
+.info-product-price del {
+    margin-left: 13px;
+    font-size: 11px;
+
 }
 
 .product-sec1.product-sec2 {
     background: #F45C5D;
     position: relative;
+}
+
+.product-sec1 img {
+    max-width: 100%;
 }
 
 h3.effect-bg {
@@ -1805,6 +1867,7 @@ li.subitem1 p {
     list-style: disc;
     font-size: 14px;
     line-height: 1.7;
+    list-style-position: inside;
 }
 
 .occasion-cart .snipcart-details {
@@ -1829,12 +1892,6 @@ table.timetable_sub {
     margin: 0 auto;
 }
 
-
-/* .left-side {
-    background-color: #f9f9f9;
-    padding-left: 23px;
-} */
-
 .timetable_sub th {
     background: #000;
     color: #fff;
@@ -1855,6 +1912,11 @@ table.timetable_sub {
 
 .timetable_sub td {
     border: 1px solid #CDCDCD;
+}
+
+option {
+    font-size: 13px;
+    text-transform:capitalize !important;
 }
 
 td.invert-image a img {
@@ -2223,6 +2285,10 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
+.form-control {
+    font-size: 13px !important;
+}
+
 select.form-control.option-w3ls {
     width: 100%;
     padding: 1em 1em 1em 1em;
@@ -2559,12 +2625,20 @@ div#testimonials h4.m-title {
 
 /*** start new product section ***/
 
+body {
+    background-color: #fdfdfd;  
+}
+
 .add-product .body .item {
     margin-top: 15px;
 }
 
 .add-product .body .item label {
-    text-align: right;
+    font-size: 13px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    margin-left: 12px;
+    padding-left: 0;
 }
 
 .add-product .body .item {
@@ -2572,22 +2646,35 @@ div#testimonials h4.m-title {
     margin-bottom: 20px;
 }
 
-.item.details {
-    margin-bottom: 57px !important;
-}
-
 .add-product .body .item input {
     font-size: 14px;
+
 }
 
-.add-product .body .item .btn-primary {
+.add-product .body .item input:not([type='radio']) {
+    height: 39px;
+}
+
+.add-product .body .item input::placeholder {
+    text-transform: capitalize;
+}
+.add-product .body .item .describe {
     font-size: 14px;
     position: absolute;
-    top: 102%;
-    left: 14px;
+    top: 100%;
+    left: 2px;
     width: 130px;
     display: block;
-    margin: auto
+}
+
+::placeholder {
+    text-transform: capitalize;
+    font-size: 13px;
+}
+
+.add-product .body .item.details {
+    margin-bottom: 50px;
+
 }
 
 .add-product .body .item select option:first-child {
@@ -2598,6 +2685,8 @@ div#testimonials h4.m-title {
 .add-product .body .sendBtn {
     width: 130px;
     display: block;
+    transform: translatey(21px);
+    margin-bottom: 20px;
 }
 
 
@@ -2947,7 +3036,20 @@ div#testimonials h4.m-title {
             padding: 20px 0 21px 30px;
         }
         .logo_agile h1 a {
-            font-size: 26px;
+            font-size: 26px !imporan;
+        }
+
+        h3.tittle-w3l {
+            font-size: 27px !important;
+        }
+
+        h3.tittle-w3l span {
+            font-size: 30px !important;
+        }
+
+        .logo_agile {
+            display:flex;
+            justify-content:center;
         }
         .logo_agile h1 a img {
             left: -29%;
@@ -2964,6 +3066,7 @@ div#testimonials h4.m-title {
         .carousel-item.item1 {
             min-height: 400px;
         }
+
     }
     @media(max-width: 736px) {
         .minicart-showing #PPminicarts form {
@@ -3145,6 +3248,9 @@ div#testimonials h4.m-title {
         /* //cart */
     }
     @media(max-width: 568px) {
+        h3.heading-tittle {
+            font-size: 22px !important;
+        }
         .footer-grids {
             padding: 0 1em;
         }

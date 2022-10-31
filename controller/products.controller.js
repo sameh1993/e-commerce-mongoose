@@ -1,40 +1,43 @@
 const productsModel = require("../model/products.model")
 
-const fs = require("fs")
-
-
 exports.getSearchForProducts = (req, res, next) => {
-
-    productsModel.searchOnAllProducts().then(result => {
+    // return console.log(req.query)
+    productsModel.searchOnAllProducts(req.query.name).then(result => {
+        // return console.log(result)
         productsModel.distinctBrandByCategory(result[0].category).then(brands => {
-            if(["mobiles", "computers"].indexOf(result[0].category) > -1) {
+            if (result.length > 0 && result[0].department == 'electronics') {
                 res.render("product", {
                     isAuth: req.session.userid,
                     isAdmin: req.session.isAdmin,
-    
+
                     // param: req.query,
                     products: result,
                     brands: brands
                 })
-            } else {
+            } else if ( result.length > 0 ) {
                 res.render("product2", {
                     isAuth: req.session.userid,
                     isAdmin: req.session.isAdmin,
-    
+
                     // param: req.query,
                     products: result,
                     brands: brands
                 })
+            } else{
+                res.render("product2", {
+                    isAuth: req.session.userid,
+                    isAdmin: req.session.isAdmin,
+
+                    products: result
+                }) 
             }
         })
-       
     }).catch(err => {
         console.log(err)
     })
 }
 
 exports.getProduct = (req, res) => {
-    // return console.log(req.params.id)
     productsModel.getProductById(req.params.id).then(result => {
         res.render("single", {
             isAuth: req.session.userid,
@@ -46,15 +49,22 @@ exports.getProduct = (req, res) => {
     })
 }
 
+const { getAllDepartments } = require("../model/departments.model")
 
 exports.getAddPeoductPage = (req, res) => {
-    res.render("add-product", {
-        isAuth: req.session.userid,
-        isAdmin: req.session.isAdmin
+    getAllDepartments().then(departments => {
+        res.render("add-product", {
+            isAuth: req.session.userid,
+            isAdmin: req.session.isAdmin,
+            departs: departments
+        })
     })
+
 }
 
 exports.postAddNewProduct = (req, res) => {
+    // return console.log(req.body)
+    req.body.category = JSON.parse(req.body.category)
     productsModel.insertNewProduct(req.body, req.files).then(result => {
         console.log(result)
         res.redirect("/product/" + result._id)
@@ -70,7 +80,6 @@ exports.getEditProductPage = (req, res) => {
         res.render("edit-product", {
             isAuth: req.session.userid,
             isAdmin: req.session.isAdmin,
-
             product: result[0]
         })
     }).catch(err => {
@@ -78,12 +87,12 @@ exports.getEditProductPage = (req, res) => {
     })
 }
 
-
 exports.postEditProductPage = (req, res) => {
+    // return console.log("edit", req.body)
     const id = req.params.id
     productsModel.updateProductById(req.body, req.files, id).then(result => {
         for (let img of req.body.removeImages) {
-            fs.unlink(img, function() {
+            fs.unlink(img, function () {
                 console.log("remove", img)
             })
         }
@@ -92,19 +101,40 @@ exports.postEditProductPage = (req, res) => {
     })
 }
 
-exports.getProductsByCategory = (req, res) => {
-    // return console.log(req.query.category)
-    productsModel.fetchProductsByCategory(req.query).then(result => {
+
+exports.getProductsByCategory = async (req, res) => {
+    // const { category, type } = req.query
+    req.query.page = req.query.page || 1
+    req.query.skip = (req.query.page - 1) * req.query.limit
+    const totalItem = await productsModel.countProductLengthByCatgeory(req.query)
+    // return console.log(totalItem)
+    productsModel.fetchProductsByCategoryWithLimit(req.query).then(result => {
         productsModel.distinctBrandByCategory(req.query.category).then(brands => {
-            // console.log(brands, "brands")
-            if (["mobiles", "computers"].indexOf(req.query.category) > -1) {
+            
+
+            if (result.length > 0 && result[0].department === 'electronics') {
                 res.render("product", {
                     isAuth: req.session.userid,
                     isAdmin: req.session.isAdmin,
 
                     param: req.query,
                     products: result,
-                    brands: brands
+                    productLength: totalItem,
+                    brands: brands,
+                    query: req.query,
+                    page : req.query.page
+                })
+            } else if ( result.length > 0 ) {
+                res.render("product2", {
+                    isAuth: req.session.userid,
+                    isAdmin: req.session.isAdmin,
+
+                    param: req.query,
+                    products: result,
+                    productLength: totalItem,
+                    brands: brands,
+                    query: req.query,
+                    page: req.query.page
                 })
             } else {
                 res.render("product2", {
@@ -151,26 +181,32 @@ exports.getProductsByPrice = (req, res) => {
             }
         }
     }
-    const currentFilter = { price: filter }
-    productsModel.fetchProductsByCategory(currentFilter).then(result => {
-        res.render("product", {
-            isAuth: req.session.userid,
-            isAdmin: req.session.isAdmin,
 
-            products: result
+    const currentFilter = { price: filter }
+
+    productsModel.fetchProductsByCategory(currentFilter).then(result => {
+        productsModel.distinctBrandByCategory(req.query.category).then(brand => {
+            res.render("product", {
+                isAuth: req.session.userid,
+                isAdmin: req.session.isAdmin,
+                products: result,
+                param: req.query,
+                brands:  brand
+            })
         })
+
     })
 }
 
 
 exports.getDeleteproduct = (req, res) => {
     productsModel.deleteProductById(req.params.id).then(result => {
+        console.log('controller', result)
         res.redirect("/")
     }).catch(err => {
         console.log(err)
     })
 }
-
 
 exports.getcheckoutPage = (req, res) => {
     res.render("checkout", {

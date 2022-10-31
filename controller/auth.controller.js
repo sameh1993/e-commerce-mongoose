@@ -4,8 +4,6 @@ const { signUp, loginUser} = require("../model/auth.model")
 exports.postAddNewUser = (req, res) => {
     signUp(req.body).then(result => {
         res.json(result)
-        console.log(result)
-        console.log("good")
     }).catch(err => {
         res.json({
             err: "this email is existing"

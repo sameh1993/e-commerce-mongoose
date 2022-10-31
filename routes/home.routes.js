@@ -26,20 +26,11 @@ const storage = multer.diskStorage({
     }
 })
 
-
-
-
 // slider
 const { postAddNewSlide, deleteSlider } = require("../controller/slider.controller")
-
 
 router.post("/api/slider/add", multer({ storage: storage }).single("image"), postAddNewSlide)
 
 router.get("/api/slider/delete/:id", deleteSlider)
-
-
-
-
-
 
 module.exports = router
