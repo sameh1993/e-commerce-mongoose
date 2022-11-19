@@ -1817,6 +1817,18 @@ li.subitem1 p {
     margin: 0;
 }
 
+.agileinfo-ads-display {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.agileinfo-ads-display .pagination {
+    position: absolute;
+    top: 100%;
+    right:0;
+    left:0;
+}
+
 
 /*-- //product page --*/
 

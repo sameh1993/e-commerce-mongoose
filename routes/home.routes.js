@@ -1,36 +1,48 @@
-const router = require("express").Router()
-const homeController = require("../controller/home.controller")
-const ProductController = require("../controller/products.controller")
-const bodyParser = require("body-parser")
-const multer = require("multer")
+const router = require("express").Router();
+const homeController = require("../controller/home.controller");
+const ProductController = require("../controller/products.controller");
+const bodyParser = require("body-parser");
+const multer = require("multer");
 
+router.get("/", homeController.getHomepage);
 
-router.get("/", homeController.getHomepage)
+router.get(
+  "/price/:id",
+  bodyParser.urlencoded({ extended: true }),
+  homeController.getHomepage
+);
 
-router.get("/price/:id", bodyParser.urlencoded({ extended: true }), homeController.getHomepage)
+router.post(
+  "/api/filter-product",
+  // bodyParser.json(),
+  homeController.updateProductByFilter
+);
 
-router.post('/api/filter-product', bodyParser.json(), homeController.updateProductByFilter)
+router.get("/contactUs", homeController.getContactUsPage);
 
-router.get("/contactUs", homeController.getContactUsPage)
-
-router.get("/search", ProductController.getSearchForProducts)
-
-
+router.get("/search", ProductController.getSearchForProducts);
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'assets/images/')
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + "-" + file.originalname)
-    }
-})
+  destination: function (req, file, cb) {
+    cb(null, "assets/images/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
 
 // slider
-const { postAddNewSlide, deleteSlider } = require("../controller/slider.controller")
+// const {
+//   postAddNewSlide,
+//   deleteSlider,
+// } = require("../controller/slider.controller");
 
-router.post("/api/slider/add", multer({ storage: storage }).single("image"), postAddNewSlide)
+// router.post(
+//   "/api/slider/add",
+//   multer({ storage: storage }).single("image"),
+//   postAddNewSlide
+// );
 
-router.get("/api/slider/delete/:id", deleteSlider)
+// router.get("/api/slider/delete/:id", deleteSlider);
 
-module.exports = router
+module.exports = router;

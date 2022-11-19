@@ -118,6 +118,11 @@
 				color:#555;
 			}
 
+			.components > div {
+				display:none;
+				
+			}
+
 
 			@media (max-width: 767px) {
 				#languages .dropdown-menu {
@@ -342,6 +347,26 @@
 								</button>
 							</div>
 
+							<div class="components">
+								<div class="item mobile">
+									<div class="row">
+										<label class="col-md-12 text-capitalize text-left"> ram : </label>
+										<div class="col-md-12 parent-input">
+											<i class="fas fa-angle-down"></i>
+											<select class="form-control type" name="ram">
+												<option selected> Select type </option>
+												<option value="512 MB"> 512 MB </option>
+												<option value="1 GB"> 1 GB </option>
+												<option value="2 GB"> 2 GB </option>
+												<option value="3 GB"> 3 GB </option>
+												<option value="4 GB"> 4 GB </option>
+												<option value="6 GB"> 6 GB </option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+
 							<div class="item">
 
 								<div class="">
@@ -390,37 +415,6 @@
 									</div>
 								</div>
 							</div>
-
-							<!-- <div class="item">
-									<div class="row">
-										<label class="col-md-12 text-capitalize text-left"> type : </label>
-										<div class="col-md-12 parent-input">
-											<select class="form-control" name="category">
-												<optgroup label="mobiles & accessories">
-													<option value="mobile & accessories"> mobile </option>
-													<option value="computers & accessories"> covers </option>
-												</optgroup>
-												<optgroup label="computers & accessories">
-													<option value="desktop"> desktop device </option>
-													<option value="labtop"> laptop </option>
-													<option value="access&printer"> printer </option>
-													<option value="access&screen"> screen </option>
-													<option value="access&keyboard"> keyboard </option>
-													<option value="access&mouse"> mouse </option>
-												</optgroup>
-												<optgroup label="tablets & iphones">
-													<option value="tablet"> tablet device </option>
-													<option value="iphone"> apple device </option>
-												</optgroup>
-											</select>
-										</div>
-									</div>
-
-								</div> -->
-
-
-
-
 
 							<div class="item">
 								<div class="row">
@@ -644,7 +638,7 @@
 				<!-- //for bootstrap working -->
 				<!-- //js-files -->
 				<script src="/js/filter-multi-select-bundle.min.js"></script>
-				<script src="/js/customs.js"></script>
+				<script type="module" src="/js/customs.js"></script>
 				<script src="/js/add-product.js"></script>
 
 

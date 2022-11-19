@@ -1,293 +1,417 @@
 <style>
+  .agile_inner_drop_nav_info {
+    padding: 20px;
+  }
+
+  ul.multi-column-dropdown li input[type="submit"] {
+    color: #777;
+  }
+
+  ul.multi-column-dropdown li input[type="submit"]:hover {
+    color: #f45c5d;
+  }
+
+  @media (min-width: 768px) {
     .agile_inner_drop_nav_info {
-        padding: 20px;
+      min-width: 475px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .navbar {
+      position: relative !important;
+      padding: 10px;
     }
 
-    ul.multi-column-dropdown li input[type="submit"] {
-        color: #777;
+    .navbar-light .navbar-nav .nav-link {
+      color: #222;
     }
 
-    ul.multi-column-dropdown li input[type="submit"]:hover {
-        color: #F45C5D;
+    .navbar-inner .navbar-collapse li {
+      transition: all 0.4s ease-in-out;
     }
 
-    @media(min-width: 768px) {
-        .agile_inner_drop_nav_info {
-            min-width: 475px;
-        }
+    .agile_inner_drop_nav_info {
+      padding: 10px 19px;
     }
 
-    @media (max-width: 767px) {
-        .navbar {
-            position: relative !important;
-            padding: 10px;
-        }
-
-
-        .navbar-light .navbar-nav .nav-link {
-            color: #222;
-        }
-
-        .navbar-inner .navbar-collapse li {
-            transition: all .4s ease-in-out;
-        }
-
-        .agile_inner_drop_nav_info {
-            padding: 10px 19px;
-        }
-
-        .navbar-inner .navbar-collapse li {
-            position: relative;
-        }
-
-        .nav-item.dropdown {
-            position: relative;
-            padding: 10px;
-            padding-top: 0;
-            font-size: 13px;
-        }
-
-        .dropdown-toggle h5 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .ul.multi-column-dropdown li input[type="submit"] {
-            color: #777 !important;
-            width: 100% !important;
-        }
-
+    .navbar-inner .navbar-collapse li {
+      position: relative;
     }
+
+    .nav-item.dropdown {
+      position: relative;
+      padding: 10px;
+      padding-top: 0;
+      font-size: 13px;
+    }
+
+    .dropdown-toggle h5 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .ul.multi-column-dropdown li input[type="submit"] {
+      color: #777 !important;
+      width: 100% !important;
+    }
+  }
 </style>
-
-
 
 <!-- navigation -->
 <div class="navbar-inner">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="agileits-navi_search">
-                <form action="/product/add" method="GET">
-                    <select onchange="this.form.submit()" id="agileinfo-nav_search" name="agileinfo_search" class="border" required="">
-                        <option value="all">All Categories</option>
-                        <option value="Headphones">Headphones</option>
-                        <option value="Computers">Computers & accessories </option>
-                        <option value="Appliances">Appliances</option>
-                        <option value="Mobiles">Mobiles & accessories</option>
-                        <option value="iPad & Tablets">iPad & Tablets</option>
-                        <option value="Cameras & Camcorders">Cameras & Camcorders</option>
-                        <option value="Home Audio & Theater">Home Audio & Theater</option>
-                    </select>
-                </form>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="agileits-navi_search">
+        <form action="/product/type" method="GET">
+          <select
+            onchange="this.form.submit()"
+            id="agileinfo-nav_search"
+            name="category"
+            class="border"
+            required=""
+          >
+            <option value="all">All Categories</option>
+            <option value="computers & accessories">
+              Computers & accessories
+            </option>
+            <option value="applances">Appliances</option>
+            <option value="mobiles & accessories">Mobiles & accessories</option>
+            <option value="iPad & tablets">iPad & Tablets</option>
+            <option value="cameras & accessories">Cameras & accessories</option>
+            <option value="large appliances">large appliances</option>
+          </select>
+        </form>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center mr-xl-5">
+          <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
+            <a class="nav-link" href="/"
+              >Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Electronics
+            </a>
+            <div class="dropdown-menu">
+              <div class="agile_inner_drop_nav_info">
+                <h5 class="mb-3">Mobiles, Computers</h5>
+                <div class="row">
+                  <div class="col-sm-6 multi-gd-img">
+                    <ul class="multi-column-dropdown">
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="mobiles & accessories"
+                          />
+                          <input type="hidden" name="type" value="mobile" />
+                          <input type="submit" value="All Mobile Phones" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="mobiles & accessories"
+                          />
+                          <input type="hidden" name="accessory" value="true" />
+                          <input type="submit" value="All Mobile Accessories" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="mobiles & accessories"
+                          />
+                          <input type="hidden" name="type" value="cover" />
+                          <input type="submit" value="Cases & Covers" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="mobiles & accessories"
+                          />
+                          <input
+                            type="hidden"
+                            name="type"
+                            value="screen protector"
+                          />
+                          <input type="submit" value="Screen Protectors" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="mobiles & accessories"
+                          />
+                          <input type="hidden" name="type" value="power bank" />
+                          <input type="submit" value="Power Banks" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="ipad & tablets"
+                          />
+                          <input type="hidden" name="type" value="tablet" />
+                          <input type="submit" value="Tablets" />
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-6 multi-gd-img">
+                    <ul class="multi-column-dropdown">
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="computers & accessories"
+                          />
+                          <input type="hidden" name="type" value="laptop" />
+                          <input type="submit" value="Laptops" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="computers & accessories"
+                          />
+                          <input type="hidden" name="type" value="Storage" />
+                          <input type="submit" value="Drives & Storage" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="printers"
+                          />
+                          <input type="hidden" name="type" value="Printers" />
+                          <input type="hidden" name="type" value="ink" />
+                          <input type="submit" value="Printers & Ink" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="Networking"
+                          />
+                          <input
+                            type="hidden"
+                            name="type"
+                            value="networking device"
+                          />
+                          <input type="submit" value="Networking Devices" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="Computers & accessories"
+                          />
+                          <input type="hidden" name="accessory" value="true" />
+                          <input type="submit" value="Computer Accessories" />
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto text-center mr-xl-5">
-                    <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link" href="/">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Electronics
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="agile_inner_drop_nav_info">
-                                <h5 class="mb-3">Mobiles, Computers</h5>
-                                <div class="row">
-                                    <div class="col-sm-6 multi-gd-img">
-                                        <ul class="multi-column-dropdown">
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="mobiles & accessories" />
-                                                    <input type="hidden" name="type" value="mobile" />
-                                                    <input type="submit" value="All Mobile Phones" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="mobiles & accessories" />
-                                                    <input type="hidden" name="accessory" value="true" />
-                                                    <input type="submit" value="All Mobile Accessories" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="mobiles & accessories" />
-                                                    <input type="hidden" name="type" value="cover" />
-                                                    <input type="submit" value="Cases & Covers" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="mobiles & accessories" />
-                                                    <input type="hidden" name="type" value="screen protector" />
-                                                    <input type="submit" value="Screen Protectors" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="mobiles & accessories" />
-                                                    <input type="hidden" name="type" value="power bank" />
-                                                    <input type="submit" value="Power Banks" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="tablets & iphones" />
-                                                    <input type="hidden" name="type" value="tablet" />
-                                                    <input type="submit" value="Tablets" />
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6 multi-gd-img">
-                                        <ul class="multi-column-dropdown">
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="computers & accessories" />
-                                                    <input type="hidden" name="type" value="laptop" />
-                                                    <input type="submit" value="Laptops" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="computers & accessories" />
-                                                    <input type="hidden" name="type" value="Storage" />
-                                                    <input type="submit" value="Drives & Storage" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="printers" />
-                                                    <input type="hidden" name="type" value="Printers & Ink" />
-                                                    <input type="submit" value="Printers & Ink" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Networking" />
-                                                    <input type="hidden" name="type" value="Networking Devices" />
-                                                    <input type="submit" value="Networking Devices" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Computers & accessories" />
-                                                    <input type="hidden" name="accessory" value="true" />
-                                                    <input type="submit" value="Computer Accessories" />
-                                                </form>
-                                            </li>
-                                         
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Appliances
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="agile_inner_drop_nav_info p-4">
-                                <h5 class="mb-3">TV, Appliances, Electronics</h5>
-                                <div class="row">
-                                    <div class="col-sm-6 multi-gd-img">
-                                        <ul class="multi-column-dropdown">
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="tv & screen" />
-                                                    <input type="hidden" name="type" value="tv" />
-                                                    <input type="submit" value="Networking Devices" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Speakers" />
-                                                    <input type="hidden" name="type" value="Speaker" />
-                                                    <input type="submit" value="Speakers" />
-                                                </form>
-                                            </li>
-                                
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Cameras" />
-                                                    <input type="hidden" name="type" value="Camera" />
-                                                    <input type="submit" value="Cameras" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Cameras" />
-                                                    <input type="hidden" name="type" value="Cameras" />
-                                                    <input type="submit" value="DSLR Cameras" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Refrigerators" />
-                                                    <input type="hidden" name="type" value="Accessories" />
-                                                    <input type="submit" value="Refrigerators" />
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6 multi-gd-img">
-                                        <ul class="multi-column-dropdown">
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Cameras" />
-                                                    <input type="hidden" name="type" value="Accessories" />
-                                                    <input type="submit" value="Musical Instruments" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Cameras" />
-                                                    <input type="hidden" name="type" value="Accessories" />
-                                                    <input type="submit" value="Camera Accessories" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Cameras" />
-                                                    <input type="hidden" name="type" value="Accessories" />
-                                                    <input type="submit" value="Gaming Consoles" />
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form method="GET" action="/product/type">
-                                                    <input type="hidden" name="category" value="Cameras" />
-                                                    <input type="hidden" name="type" value="Accessories" />
-                                                    <input type="submit" value="Air Conditioners" />
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>      
-                    </li>
-                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link" href="/about">About Us</a>
-                    </li>
-                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                        <a class="nav-link" href="product.html">New Arrivals</a>
-                    </li>
+          </li>
+          <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Appliances
+            </a>
+            <div class="dropdown-menu">
+              <div class="agile_inner_drop_nav_info p-4">
+                <h5 class="mb-3">TV, Appliances, Electronics</h5>
+                <div class="row">
+                  <div class="col-sm-6 multi-gd-img">
+                    <ul class="multi-column-dropdown">
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="computers & accessories"
+                          />
+                          <input
+                            type="hidden"
+                            name="type"
+                            value="network device"
+                          />
+                          <input type="submit" value="Networking Devices" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="Speakers"
+                          />
+                          <input type="hidden" name="type" value="speaker" />
+                          <input type="submit" value="Speakers" />
+                        </form>
+                      </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contactUs">Contact Us</a>
-                    </li>
-                </ul>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="comeras & accessories"
+                          />
+                          <input type="hidden" name="type" value="camera" />
+                          <input type="submit" value="All Cameras" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="comeras & accessories"
+                          />
+                          <input type="hidden" name="type" value="camera" />
+                          <input type="submit" value="DSLR Cameras" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="large appliances"
+                          />
+                          <input
+                            type="hidden"
+                            name="type"
+                            value="refrigerator"
+                          />
+                          <input type="submit" value="Refrigerators" />
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-6 multi-gd-img">
+                    <ul class="multi-column-dropdown">
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="Cameras"
+                          />
+                          <input
+                            type="hidden"
+                            name="type"
+                            value="musical Instrument"
+                          />
+                          <input type="submit" value="Musical Instruments" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="Cameras"
+                          />
+                          <input type="hidden" name="accessory" value="true" />
+                          <input type="submit" value="Camera Accessories" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="camera & acessories"
+                          />
+                          <input type="hidden" name="accessory" value="true" />
+                          <input type="submit" value="camera accessories" />
+                        </form>
+                      </li>
+                      <li>
+                        <form method="GET" action="/product/type">
+                          <input
+                            type="hidden"
+                            name="category"
+                            value="air conditioners"
+                          />
+                          <input
+                            type="hidden"
+                            name="type"
+                            value="conditioner"
+                          />
+                          <input type="submit" value="Air Conditioners" />
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-        </nav>
-    </div>
+          </li>
+          <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+            <a class="nav-link" href="/about">About Us</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/contactUs">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </div>
 <!-- //navigation -->
