@@ -22,6 +22,7 @@
     "braintree-web": "^3.85.2",
     "braintree-web-drop-in": "^1.33.0",
     "connect-mongodb-session": "^3.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.18.2",
@@ -30,8 +31,10 @@
     "express-session": "^1.17.2",
     "express-validator": "^6.14.2",
     "mongodb": "^4.2.1",
-    "mongoose": "^6.1.6",
+    "mongoose": "^6.8.1",
     "multer": "^1.4.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.3",
     "node-boolify": "^1.0.6",
     "nodemon": "^2.0.13"
   }
